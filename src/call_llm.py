@@ -1,6 +1,6 @@
 from openai import OpenAI
 client = OpenAI(
-  api_key="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"  # this is also the default, it can be omitted
+  api_key=""  # this is also the default, it can be omitted
 )
 
 # {'role': 'system', 'content': 'You are an assistant who follows instructions.'}
