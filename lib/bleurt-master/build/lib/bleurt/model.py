@@ -251,7 +251,6 @@ def ranking_loss(predictions, labels):
   """Ranking loss as described in https://arxiv.org/pdf/2009.01325.pdf."""
   # We found that clipping the predictions during training helps, since the
   # ranking loss itself does not constrain the predictions.
-  # TODO(tsellam): Understand why clipping helps.
   predictions = tf.clip_by_value(predictions, 0.0, 1.0)
   # Gets pairs of predictions and pairs of labels in the same order.
   ii, jj = tf.meshgrid(
