@@ -1,0 +1,5 @@
+# Demonstration
+structure text:
+if always, """Officer Send documents by mail""" if paper documents required, """Officer Send documents by express"""
+process text:
+The officer should always send documents by mail. If paper documents are required, the officer should also send them by express delivery.

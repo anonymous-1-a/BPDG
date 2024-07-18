@@ -1,0 +1,5 @@
+# Demonstration
+structure text:
+"""Makeup Artist Draw eyelashes""" or """Makeup Artist Apply blush""" or """Makeup Artist apply lipstick"""
+process text:
+The makeup artist should draw eyelashes, apply blush, or apply lipstick.

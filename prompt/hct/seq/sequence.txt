@@ -1,0 +1,9 @@
+# Demonstration
+structured text:
+"""Lender of Bank Of Golden Merchants (BGM) Value Loan Application""" next """Risk Assesment Staff of Bank Of Golden Merchants (BGM) Check Complete Submission"""
+process text:
+The lender of the Bank of Golden Merchants (BGM) assesses the value of the loan. Then, the risk assessment staff of the Bank of Golden Merchants (BGM) checks that the loan submission is complete.
+structured text:
+"""System Enter Order Requirements""" next """Support Service Inventory and Food Required""" next """System Inventory Confirmed"""
+process text:
+The system receives the order requirements. Next, the support service reviews the inventory and necessary food items. Finally, the system confirms the available inventory.

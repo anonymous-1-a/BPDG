@@ -1,0 +1,135 @@
+# Demonstration
+XML:
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Clerk" pool="Hardware Retailer">Goods to ship</task>
+        <and>
+            <seq>
+                <task lane="Warehouse Worker" pool="Hardware Retailer">package goods</task>
+            </seq>
+            <seq>
+                <task lane="Clerk" pool="Hardware Retailer">Decide if normal post or special shipment</task>
+                <xor condition="|special shipment|Normal post|" description="Mode of delivery" type="">
+                    <seq>
+                        <task lane="Clerk" pool="Hardware Retailer">Request quotes from carriers</task>
+                        <task lane="Clerk" pool="Hardware Retailer">Assigne a carrier and prepare paperwork</task>
+                    </seq>
+                    <seq>
+                        <task lane="Clerk" pool="Hardware Retailer">Check if extra insurance is necessary</task>
+                        <or condition="|Always|extra insurance required|">
+                            <seq>
+                                <task lane="Clerk" pool="Hardware Retailer">Fill in a post label</task>
+                            </seq>
+                            <seq>
+                                <task lane="Logistics Manager" pool="Hardware Retailer">Take out extra insurance</task>
+                            </seq>
+                        </or>
+                    </seq>
+                </xor>
+            </seq>
+        </and>
+        <task lane="Warehouse Worker" pool="Hardware Retailer">Add paperwork and move package to pick area</task>
+    </seq>
+</rpst>
+process text:
+If the hardware retailer has goods to ship, the shipping process will begin. The warehouse worker is responsible for packaging the goods. At the same time, the clerk will decide whether to use normal post or arrange for a special shipment. If a special shipment is required, which includes insurance provided by the carrier service, the clerk will first request quotes from carriers. Then, the clerk will assign a carrier and prepare the necessary paperwork for the shipment. If the decision is to use normal post, the clerk will check if extra insurance is necessary. Regardless of whether extra insurance is needed or not, the clerk will always fill in a post label for the shipment. However, if it is determined that extra insurance is required, the logistics manager will take care of obtaining the additional insurance. Once the clerk and warehouse worker have completed their respective tasks, the warehouse worker will add the necessary paperwork to the package. They will then move the package to the designated pick-up area. Finally, the goods will be made available for pick-up.
+XML:
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Owner" pool="Restaurant Management System">Want to add worker</task>
+        <task lane="Owner" pool="Restaurant Management System">Open system</task>
+        <loop condition="user not found" description="" exit="user found" type="dowhile">
+            <seq>
+                <task lane="Owner" pool="Restaurant Management System">Enter worker email</task>
+                <task lane="System" pool="Restaurant Management System">Check is user exists</task>
+            </seq>
+            <seq>
+                <task lane="System" pool="Restaurant Management System">Error response</task>
+            </seq>
+        </loop>
+        <task lane="System" pool="Restaurant Management System">Add role to existed user</task>
+        <task lane="System" pool="Restaurant Management System">Send email</task>
+        <and>
+            <seq>
+                <task lane="Registered user" pool="Restaurant Management System">Email received</task>
+                <task lane="Registered user" pool="Restaurant Management System">Worker profile added</task>
+            </seq>
+            <seq>
+                <task lane="System" pool="Restaurant Management System">Worker added</task>
+            </seq>
+        </and>
+    </seq>
+</rpst>
+process text:
+In the restaurant management system, when the owner wants to add a worker, they open the system and enter the worker's email. The system then checks if the user already exists in the Users database. If the user is not found, an error response is generated, and the owner is prompted to enter the worker's email again.
+
+However, if the user is found in the database, the system adds the appropriate role to the existing user in the Users database and sends an email. Finally, the worker is added to the system. At the same time, the registered user receives an email. Additionally, the worker's profile is successfully added to the system, and the process ends.
+XML:
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Hiring Manager" pool="The Firm">Hiring need exists</task>
+        <task lane="Hiring Manager" pool="The Firm">Develop Hiring Proposal</task>
+        <task lane="Senior Manager" pool="The Firm">Review Hiring Proposal</task>
+        <xor condition="|No|Yes|" description="Proposal Approved?" type="">
+            <seq>
+                <task lane="Senior Manager" pool="The Firm">No New Hire Allowed</task>
+            </seq>
+            <seq>
+                <loop condition="No" description="Position Description Approved?" exit="Yes" type="dowhile">
+                    <seq>
+                        <task lane="Hiring Manager" pool="The Firm">Deveeeelop Position Description</task>
+                        <task lane="Senior Manager" pool="The Firm">Review Position Description</task>
+                    </seq>
+                </loop>
+                <task lane="HR Specialist" pool="The Firm">Create Open Position</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>
+process text:
+If there is a hiring need, the process starts. First, the hiring manager of the firm should develop a hiring proposal, and then the senior manager should review it. If the proposal is not approved, no new hires are allowed. Otherwise, the hiring manager should develop the position description, and then the senior manager should review it until she or he approves it. When the senior manager agrees, the HR specialist creates the open position.
+XML:
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <rigid>
+            <vertices>
+                <event id="29" lane="" pool="?"/>
+                <gateway description="" id="27" type="XOR"/>
+                <task id="25" lane="" pool="?">The staff prints and prepares documents</task>
+                <event id="24" lane="" pool="?">Rent continued</event>
+                <gateway description="Payment received?" id="21" type="XOR"/>
+                <event id="20" lane="" pool="?">Rent canceled</event>
+                <task id="8" lane="" pool="?">The staff asks for payment for the service</task>
+                <gateway description="New request?" id="17" type="XOR"/>
+                <task id="15" lane="" pool="?">The staff receives payment</task>
+                <task id="13" lane="" pool="?">The staff should ask the customer if he wants a new request</task>
+                <task id="4" lane="" pool="?">A system will be used to calculate the final price</task>
+                <task id="2" lane="" pool="?">Customers post registration requests</task>
+                <gateway description="Customer willing to pay?" id="10" type="XOR"/>
+            </vertices>
+            <edges>
+                <edge source_id="21" target_id="25">Yes</edge>
+                <edge source_id="27" target_id="2"/>
+                <edge source_id="13" target_id="17"/>
+                <edge source_id="4" target_id="8"/>
+                <edge source_id="20" target_id="29"/>
+                <edge source_id="10" target_id="15">Yes</edge>
+                <edge source_id="25" target_id="24"/>
+                <edge source_id="8" target_id="10"/>
+                <edge source_id="17" target_id="20">No</edge>
+                <edge source_id="17" target_id="27">Yes</edge>
+                <edge source_id="10" target_id="13">No</edge>
+                <edge source_id="2" target_id="4"/>
+                <edge source_id="15" target_id="21"/>
+                <edge source_id="21" target_id="20">No</edge>
+                <edge source_id="24" target_id="29"/>
+            </edges>
+        </rigid>
+    </seq>
+</rpst>
+process text:
+Customers post registration requests. Once requests are received, a system will be used to calculate the final price. The staff asks for payment for the service. If the customer is willing to pay, the staff receives payment. If the payment is received, the staff prints and prepares documents, and finally  rent continues. If not received, rent is canceled. If the customer is not willing to pay, the staff should ask the customer if he wants a new request. If he wants a new request, the customer posts registration requests again. Otherwise, rent is canceled.

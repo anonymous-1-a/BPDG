@@ -1,0 +1,2 @@
+# Instruction
+Translate the input XML into process text that is free of grammatical errors and naturally appealing.

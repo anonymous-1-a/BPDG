@@ -1,0 +1,10 @@
+# Demonstration
+structure text:
+"""Student Apply for graduation""" Application rejected? if yes, loop. if no, exit.
+process text:
+The student needs to apply for graduation. Should the student's application face rejection, they should initiate a reapplication cycle. If the student's application is approved, they should exit the process.
+structure text:
+"""Student Apply for graduation""" if application rejected, loop. if application not rejected, exit.
+process text:
+The student needs to apply for graduation. Should the student's application face rejection, they should initiate a reapplication cycle. If the student's application is approved, they should exit the process.
+structure text:

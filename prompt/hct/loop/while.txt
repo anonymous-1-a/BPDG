@@ -1,0 +1,9 @@
+# Demonstration
+structure text:
+Data updated? if no, loop """Student Refresh page""" if yes, exit.
+process text:
+If the data has not been updated, the student should refresh the page and repeat this process. Once the data has been updated, the student can exit this flow.
+structure text:
+if manager not satisfied, loop """The cleaner first mixes the detergent before mopping the floor.""" if manager satisfied, exit.
+process text:
+If the manager is dissatisfied with the work, the cleaner should repeat the process. First, the cleaner mixes the detergent, then mops the floor. Once the manager is satisfied, the cleaner may exit.

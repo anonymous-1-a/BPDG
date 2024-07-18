@@ -1,0 +1,8 @@
+# Demonstration
+structure text:
+"""Programmer Remove other tasks instead of additional feature""" xor """Programmer Add additional feature in new sprint""" xor """Don't add feature"""
+process text:
+The programmer must choose one of the following three options, and only one:
+    1. Remove other tasks instead of adding the additional feature.
+    2. Add the additional feature in a new sprint.
+    3. Do not add the feature.

@@ -1,0 +1,10 @@
+# Demonstration
+structure text:
+"""The customer creates a return request, which is then reviewed by the Retail Operations department.""" if Reject the request, """Customer Edit the request""" loop. if Approve the request, exit.
+process text:
+The customer creates a return request. The Retail Operations department then reviews the return request. If the department rejects the request, the customer edits the request, and the process loops back to the Retail Operations department reviewing the request. If the department approves the request, the process will end.
+structure text:
+"""Students generate the form and convert it to a PDF. Meanwhile, students collect the required documents, such as transcripts of records, English test results, and their CV. After generating the form and collecting the required documents, students send all the required documents by post to the admissions office.""" Documentation complete? if Incomplete, """Admission office Requesting missing documents by email""" loop. if Complete, exit.
+process text:
+Students generate the form and convert it to a PDF. Meanwhile, students collect the required documents, such as transcripts of records, English test results, and their CV. After generating the form and collecting the required documents, students send all of them by post to the admissions office.
+The admissions office then checks to see if the documentation is complete. If the documentation is incomplete, the admissions office requests the missing documents from the students by email, and the process loops back to the students sending the documents. If the documentation is complete, the process exits.

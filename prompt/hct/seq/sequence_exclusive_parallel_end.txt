@@ -1,0 +1,9 @@
+# Demonstration
+structured text:
+"""If the system finds a suitable fit, it selects the room and time slot. If the system does not find an appropriate fit, it will check later.""" exclusive choice end, next """System Enter Order Requirements"""
+process text:
+If the system finds a suitable room and time slot, it will select them. If the system does not find an appropriate fit, it will check again later. In either of these cases, the system will then enter the order requirements.
+structured text:
+"""The interior expert of the Old-timers Garage (OTG) will renovate the seats, the front and side panels, and the dashboard simultaneously.""" parallel end, next """Interior Expert of Old-timers Garage (OTG) Write Interior Report"""
+process text:
+The interior expert of the Old-timers Garage (OTG) will renovate the seats, the front and side panels, and the dashboard simultaneously. After all of these parallel tasks are completed, the interior expert of the Old-timers Garage (OTG) will then write an interior report.
