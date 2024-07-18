@@ -1,0 +1,1 @@
+The manager of Yummy Cookies determines the price and delivery time. Next, the manager calculates an offer. Finally, the manager sends the offer.

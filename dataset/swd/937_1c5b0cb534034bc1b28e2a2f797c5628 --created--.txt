@@ -1,0 +1,4 @@
+The Cambio Reservation Platform is a professional platform for car rental. When a reservation is made, the car is unlocked for the customer, and the lease period begins. There are three possible circumstances:
+First, if the reservation time has elapsed, the platform will send instructions to the customer to return the car. Then, the car will be retrieved.
+Second, if the platform receives a reservation cancellation from the customer, the platform will send a cancellation confirmation to the customer. Then, instructions to return the car will be sent, and finally, the car will be retrieved.
+Third, if the platform receives a reservation time update from the customer, the end time for the car rental will be updated in the Cambio Car Reservations System. The customer will then be notified about the update. After the update, the platform continues to monitor the three circumstances.

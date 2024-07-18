@@ -1,0 +1,7 @@
+The Administration of the Kitchen department is responsible for receiving clients and discussing their requirements with the Designer. Once the requirements are discussed, the Designer proceeds to create a design. The Administration then sends the design to the client. If the offer is declined, the process of creating and sending the design is repeated until an accepted offer is received.
+
+Once an offer is accepted, the Builder checks the dimensions while the Finance department proceeds to purchase the necessary equipment. Simultaneously, the Administration plans the date for the project.
+
+After the date is planned, the Builder begins by removing the old kitchen while cutting the shelves simultaneously. Following that, the Builder proceeds to assemble the new kitchen.
+
+After the kitchen is assembled, the Finance department proceeds to send the invoice. If there is no response within one hour, Finance sends a reminder for the invoice until payment is received.

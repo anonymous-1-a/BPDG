@@ -1,0 +1,6 @@
+When receiving a customer's request for dog grooming, the grooming process begins. The first step is for the intern to perform a quick shampoo on the dog. After shampooing, the cleanliness of the dog is evaluated.
+If the dog is not clean enough, the intern repeats the quick shampooing process. This loop continues until the dog is considered clean enough.
+Once the dog is clean enough, a master groomer evaluates the condition of the dog. The master groomer then assesses whether the dog is in a calm or agitated state.
+If the dog is calm, the master groomer proceeds to cut the dog's hair. However, if the dog is agitated, the grooming process involves sedating the dog with the assistance of a vet. Once sedated, the master groomer can proceed to cut the dog's hair.
+After the hair cutting process, the master groomer performs will clean Dog's Ears,at the same time,Intern  will perform Trim Dog's Nails.
+After completing the above steps, the master groomer performs dental care for the dog. Once the performs dental care for the dog are completed by the master groomer, the grooming process concludes.

@@ -1,0 +1,7 @@
+Immediately following the review, the subsidiary undertakes the task of data cleansing and enrichment, which involves checking for duplicates and unused data. Once this process is complete, the subsidiary hands over the second set of extracts, which have undergone data cleansing, to the MDM (Master Data Management) team.
+
+The MDM team then reviews the second set of extracts after the data cleansing is performed. Next, a joint review is conducted by the MDM team and the subsidiary on the second set of cleansed extracts. If the review reveals any issues, the aforementioned activities are repeated. However, if the review is satisfactory, the MDM team and the subsidiary proceed with the task of mapping non-SAP data to SAP data using the To-Be template.
+
+After the mapping process, if any problems arise, the activities described above are repeated, starting with the subsidiary's data cleansing and enrichment stage, which includes checking for duplicates and unused data. This repetition continues until no problems occur.
+
+Finally, the MDM team checks for duplicates across all plants and subsidiaries and obtains the cleaned and enriched data.

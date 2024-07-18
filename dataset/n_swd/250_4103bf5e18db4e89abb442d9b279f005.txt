@@ -1,0 +1,2 @@
+The Engineering Department receives an order from the sales department.  If the order cannot be built,the Engineering Department Sends customer altered proposal.
+If the customer accept proposal,or the order can be built,the Engineering Department Sends copy of order to warehouse.Then the order will be processed.Otherwise,Order will be cancelled.

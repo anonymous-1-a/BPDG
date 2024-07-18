@@ -1,0 +1,7 @@
+When a customer walks in, the Customer Service Officer (CSO) of StarMall gathers the customer's requirements and fills out the rental application form. After that, the Office Dispatcher (OD) dispatches the rental application form from the CSO to the Marketing Officer (MO). Next, the MO checks the availability of the preferred industrial space from the Industrial Management System. The MO then proceeds to the Customer Service Counter (CSC) to meet the customer and obtains the customer's Unique Entity Number (UEN) while verifying their eligibility through the government website.
+
+If the customer is eligible (about 75% of cases), the MO markets the available industrial spaces to the customer. However, if the customer is not eligible (about 25% of cases), the process ends.
+
+After the MO markets the available industrial spaces to the customer, the customer makes a decision. If the customer rejects the choices (about 10% of cases), the MO updates the rental application form with the customer's rejection, and the process ends. Otherwise, if the customer accepts the choice (about 90% of cases), the MO reserves the customer's selection in the Industrial Management System, updates the rental application form, and passes the form to the customer. The MO then emails the Legal Department (LM) for Rental Application approval.
+
+Finally, the CSO collects the rental application form and booking fee from the customer and informs them of the 2 working day wait time.

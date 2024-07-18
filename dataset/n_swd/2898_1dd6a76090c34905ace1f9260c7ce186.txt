@@ -1,0 +1,7 @@
+To start finalizing the smart contract, the exporter initiates the process. The importer receives the contract initiation message and needs to review the smart contract. If further review is necessary, they should continue looping through the process. Once no more review is needed, they can exit. The importer then approves the final contract and notifies the other party. 
+
+The exporter reviews the final contract and conduct smart contract validation test and if it fails, loops back for further review. If it passes, the process ends. The exporter then signs the smart contract with a private key. The importer is notified to sign the contract with their private key, and the smart contract amount is frozen. Once live, the exporter receives a notification that the smart contract is deployed, and shipments are sent. 
+
+The importer waits for the consignments to be received, and once they are, the exporter prepares for the execution decision. The importer must follow the smart contract flow, review the terms, and if not met, go through a reevaluation loop. If satisfied, they can exit. The importer's process is then executed. 
+
+Finally, the exporter receives a notification that the smart contract has been executed and payment is received.

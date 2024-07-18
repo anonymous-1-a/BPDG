@@ -1,0 +1,14 @@
+A visit to the doctor can be done in one of the following ways, and only one:  
+1. Visit the doctor privately.  
+2. Visit the doctor in a state facility.  
+3. Do not visit the doctor.  
+
+If it is your first visit, a visit to the doctor will complete the documents. If it is not your first visit, the step will be skipped.  
+
+After completing the necessary paperwork, you will proceed to the waiting room.  
+
+Once called by the doctor, you will undergo a check-up.  
+
+If the disease is within the scope of the doctor, you will receive a prescription and a sick leave document if necessary. If medication is required, you will receive a prescription during the visit to give to the pharmacist. If the medicine is available, you will be prescribed the medication on your next visit. Subsequently, on another visit, you will need to make a payment. If the medicine is unavailable, you must decide between picking it up or having it delivered. Following this, you will receive details about the pickup or delivery date. If you disagree with the date, visiting the doctor will lead to canceling the order. If you agree with the date, visiting the doctor will require a payment. If no medication is needed, this process will be skipped.  
+
+If the disease is not within the scope of the doctor, you will be referred to an appropriate specialist.

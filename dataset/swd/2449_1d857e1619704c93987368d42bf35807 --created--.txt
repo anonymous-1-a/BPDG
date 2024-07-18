@@ -1,0 +1,3 @@
+If the DVMS Plant receives an order, the process starts. The DVMS Plant begins with the winding process and simultaneously proceeds with core making and assembly. Next, insulation is carried out. After insulation, heat treatment is performed. Following that, brazing and testing are conducted.
+
+The question then arises: Is the transformer operating correctly? If the answer is no, the process is terminated. In the case of a positive response, quality control is conducted. If the quality is not assured, the process is terminated. However, if the quality is assured, the packing process is initiated. The process comes to an end when the transformer is dispatched to its destination.

@@ -1,0 +1,4 @@
+CityPal after entering the webpage, sign into self account，and then must follow these steps in order:
+1. Student users explore landmarks, select a landmark to explore, and choose a travel option.
+2. Tourist users view libraries in your area, select your desired library, and let CityPal assist you in choosing directions with the shortest route.
+After completing these steps, CityPal will provide a rating and receive rewards before logging out of the account.

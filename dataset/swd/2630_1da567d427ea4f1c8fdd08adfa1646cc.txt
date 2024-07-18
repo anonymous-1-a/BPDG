@@ -1,0 +1,6 @@
+In the project requirements process of BPMN. The first task for the developer is to understand the BPMN model Once the developer has a good grasp of the BPMN model, they proceed to the next step.
+In the next step, the developer writes a test that is expected to fail initially. This test is designed to validate the functionality of the BPMN execution.
+After writing the failing test, the developer extends the BPMN or creates mock components to ensure that the failing test becomes successful.
+Once the developer has made the test pass, they evaluate whether the test is now passing or not. If the test is not yet passing, the developer goes back to the previous step and continues extending the BPMN or making adjustments until the test becomes successful.
+If the test is green, meaning it is passing, the developer assesses whether the current level of BPMN execution satisfies the requirements of the project. If the level does not meet the requirements, the developer loops back to the step of writing a failing test until the requirements are met.
+If the level of BPMN execution satisfies the project requirements, the BPMN execution using TDD has been successfully implemented, and the process concludes.
