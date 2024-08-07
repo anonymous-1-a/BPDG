@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Sales" pool="order management">received order details</task>
+        <task lane="Sales" pool="order management">prepare order for logistics</task>
+        <task lane="logistics" pool="order management">check product availability</task>
+        <xor condition="|yes|no|" description="available?" type="">
+            <seq>
+                <task lane="logistics" pool="order management">reserve product for customer</task>
+                <task lane="Sales" pool="order management">send invoice to customer</task>
+                <task lane="Sales" pool="order management">prepare delivery</task>
+                <task lane="Sales" pool="order management">successful</task>
+            </seq>
+            <seq>
+                <task lane="purchase" pool="order management">reorder missing products</task>
+                <task lane="purchase" pool="order management">check order amount</task>
+                <xor condition="|&lt;= 3000|&gt; 3000|" description="" type="skip">
+                    <seq>
+                        <task lane="purchase" pool="order management">print and sign order</task>
+                    </seq>
+                </xor>
+                <task lane="purchase" pool="order management">send order to supplier</task>
+                <task lane="purchase" pool="order management">received preliminary date</task>
+                <task lane="Sales" pool="order management">send Sales confirmation to customer</task>
+                <task lane="Sales" pool="order management">track order</task>
+                <task lane="Sales" pool="order management">delivery delayed</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

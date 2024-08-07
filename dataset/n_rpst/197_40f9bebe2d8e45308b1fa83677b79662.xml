@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Requestor" pool="XYZ Corporation">Start</task>
+        <loop condition="Not Complete" description="" exit="Complete" type="dowhile">
+            <seq>
+                <task lane="Requestor" pool="XYZ Corporation">Prepare Purchase Request (30 Minutes)</task>
+                <task lane="Clerk" pool="XYZ Corporation">Check for Completeness (10 Minutes)</task>
+            </seq>
+        </loop>
+        <and>
+            <seq>
+                <task lane="Clerk" pool="XYZ Corporation">Obtain Quote 2 (1 Hour)</task>
+            </seq>
+            <seq>
+                <task lane="Clerk" pool="XYZ Corporation">Obtain Quote 1 (1 Hour)</task>
+            </seq>
+        </and>
+        <task lane="Clerk" pool="XYZ Corporation">Compare Quotes, Select Vendor (15 Minutes)</task>
+        <task lane="Clerk" pool="XYZ Corporation">Forward to Buyer (5 Minutes)</task>
+        <task lane="Buyer" pool="XYZ Corporation">Purchase Products (1 Hour)</task>
+    </seq>
+</rpst>

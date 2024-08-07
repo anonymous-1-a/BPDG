@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Customer" pool="Order return">order is delivered</task>
+        <or condition="|||">
+            <seq>
+                <task lane="Customer" pool="Order return">Customer is displeased with the order</task>
+            </seq>
+            <seq>
+                <task lane="Customer" pool="Order return">Requests to return the order</task>
+            </seq>
+        </or>
+        <task lane="ERP-System" pool="Order return">System validates request</task>
+        <xor condition="|Denied|Approved|" description="" type="">
+            <seq>
+                <task lane="ERP-System" pool="Order return">Sends a confirmation of request denial</task>
+                <task lane="ERP-System" pool="Order return">Process end</task>
+            </seq>
+            <seq>
+                <task lane="ERP-System" pool="Order return">systems confirms request approval</task>
+                <and>
+                    <seq>
+                        <task lane="ERP-System" pool="Order return">Return information sent to the customer</task>
+                    </seq>
+                    <seq>
+                        <task lane="ERP-System" pool="Order return">Pick up information is transferred</task>
+                        <task lane="Delivery Partner" pool="Order return">pick up driver is assigned</task>
+                        <task lane="Delivery Partner" pool="Order return">Driver is notified of pick up details</task>
+                    </seq>
+                </and>
+                <task lane="Customer" pool="Order return">Customer repacks item</task>
+                <task lane="Delivery Partner" pool="Order return">Driver pick up the item</task>
+                <task lane="Warehouse" pool="Order return">Order is delivered at the warehouse</task>
+                <task lane="Warehouse" pool="Order return">Worker confirms receipt of item</task>
+                <task lane="ERP-System" pool="Order return">System issues refund to customer</task>
+                <task lane="Customer" pool="Order return">Customer receives a refund</task>
+                <task lane="Customer" pool="Order return">Process ends</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

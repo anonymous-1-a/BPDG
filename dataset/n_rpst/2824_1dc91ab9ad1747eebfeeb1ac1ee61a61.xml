@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="worker" pool="Viata logistics process">Order received</task>
+        <loop condition="No" description="Products ok ?" exit="Yes" type="dowhile">
+            <seq>
+                <task lane="worker" pool="Viata logistics process">Prepare, sort, and label the products</task>
+                <task lane="worker" pool="Viata logistics process">Welcome card for the 1st and 2nd time customers, scan the products
+                </task>
+            </seq>
+            <seq>
+                <task lane="Ware house manager" pool="Viata logistics process">Faulty order received</task>
+                <task lane="Ware house manager" pool="Viata logistics process">Inspect the product , prepare to send or order the missing from the supplier
+                </task>
+                <task lane="Ware house manager" pool="Viata logistics process">Wait for the order</task>
+                <task lane="Ware house manager" pool="Viata logistics process">Order received from the suppliers</task>
+                <task lane="Ware house manager" pool="Viata logistics process">Send back the order to be processed
+                    again
+                </task>
+            </seq>
+        </loop>
+        <task lane="worker" pool="Viata logistics process">Order processed, choose the right box to fit the order, wrap the delicate contents
+        </task>
+        <task lane="worker" pool="Viata logistics process">Final inspection of the order tags and the bill,pack the order and place in respective delivery carts
+        </task>
+    </seq>
+</rpst>

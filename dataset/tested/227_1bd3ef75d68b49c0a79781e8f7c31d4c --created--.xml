@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Business Lender" pool="Bank of Golden Merchants">Receive a loan application</task>
+        <task lane="SAP System" pool="Bank of Golden Merchants">Conduct Credit Check</task>
+        <task lane="SAP System" pool="Bank of Golden Merchants">Create Risk Assessment Profile</task>
+        <task lane="SAP System" pool="Bank of Golden Merchants">Assess Loan Suitability</task>
+        <xor condition="|unacceptable financial risk|Acceptable financial risk|" description="" type="">
+            <seq>
+                <task lane="SAP System" pool="Bank of Golden Merchants">Rejected application sent to customer</task>
+            </seq>
+            <seq>
+                <and>
+                    <seq>
+                        <task lane="Business Lender" pool="Bank of Golden Merchants">Company and Title searches sent to RCS Data Intelligence
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="Business Lender" pool="Bank of Golden Merchants">Arranged Customer Reference Reports sent to RCS Data Intelligence
+                        </task>
+                    </seq>
+                </and>
+                <task lane="Business Lender" pool="Bank of Golden Merchants">Customer Credit Report received</task>
+                <and>
+                    <seq>
+                        <task lane="Risk Assessment center" pool="Bank of Golden Merchants">Review report for satisfaction
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="Business Lender" pool="Bank of Golden Merchants">Review report for satisfaction
+                        </task>
+                    </seq>
+                </and>
+                <xor condition="|Customer Credit Reports not satisfactory|Customer Credit Reports satisfactory|"
+                     description="" type="">
+                    <seq>
+                        <task lane="SAP System" pool="Bank of Golden Merchants">Rejected application sent to customer
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="SAP System" pool="Bank of Golden Merchants">Final review of customer file</task>
+                        <xor condition="|Application rejected|Application approved|" description="" type="">
+                            <seq>
+                                <task lane="SAP System" pool="Bank of Golden Merchants">Application rejected sent to customer
+                                </task>
+                            </seq>
+                            <seq>
+                                <task lane="SAP System" pool="Bank of Golden Merchants">Approve application</task>
+                                <task lane="SAP System" pool="Bank of Golden Merchants">Loan offer sent to customer
+                                </task>
+                                <xor condition="|Offer acceptance received|Offer rejection received|" description=""
+                                     type="">
+                                    <seq>
+                                        <task lane="Risk Assessment center" pool="Bank of Golden Merchants">Prepare legal documents
+                                        </task>
+                                        <task lane="SAP System" pool="Bank of Golden Merchants">Application fee requested from customer
+                                        </task>
+                                        <task lane="SAP System" pool="Bank of Golden Merchants">Application fee received from customer
+                                        </task>
+                                        <task lane="SAP System" pool="Bank of Golden Merchants">Compile customer file
+                                        </task>
+                                        <task lane="SAP System" pool="Bank of Golden Merchants">Deliver documents to Loan Center
+                                        </task>
+                                        <task lane="SAP System" pool="Bank of Golden Merchants">Documents delivered
+                                        </task>
+                                    </seq>
+                                    <seq>
+                                        <task lane="SAP System" pool="Bank of Golden Merchants">Loan application rejected
+                                        </task>
+                                    </seq>
+                                </xor>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

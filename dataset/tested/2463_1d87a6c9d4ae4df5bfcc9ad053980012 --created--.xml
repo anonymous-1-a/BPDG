@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Customer Service Offricer (COS)" pool="StarMall">Customer walk-in</task>
+        <task lane="Customer Service Offricer (COS)" pool="StarMall">CSO gathers customer requirements &amp; fills rental application form
+        </task>
+        <task lane="Office Dispatcher (OD)" pool="StarMall">OD Dispatches rental application form from CSO to MO</task>
+        <task lane="Marketing Officer (MO)" pool="StarMall">MO checks availability of choice industrial space</task>
+        <task lane="Marketing Officer (MO)" pool="StarMall">MO proceeds to Customer Service Counter (CSC) to meet customer
+        </task>
+        <task lane="Marketing Officer (MO)" pool="StarMall">MO obtains customer Unique Entity Number (UEN ) and verifies eligibility from government website
+        </task>
+        <xor condition="|No 25%|Yes 75%|" description="Eligible Customer?" type="">
+            <seq>
+                <task lane="Marketing Officer (MO)" pool="StarMall">MO informs customer of UEN ineligibility and updates rental application form of rejection status
+                </task>
+            </seq>
+            <seq>
+                <task lane="Marketing Officer (MO)" pool="StarMall">MO markets choice industrial spaces to customer
+                </task>
+                <xor condition="|Accept Choice 90%|Reject Choice 10%|" description="Customer Decision?" type="">
+                    <seq>
+                        <task lane="Marketing Officer (MO)" pool="StarMall">MO reserves customer selection in IMS and updates rental application form &amp; pass form to customer
+                        </task>
+                        <task lane="Marketing Officer (MO)" pool="StarMall">MO emails Legal Department (LM) for Rental Application approval
+                        </task>
+                        <task lane="Customer Service Offricer (COS)" pool="StarMall">CSO collects rental application form and booking fee from customer &amp; informs 2 working day wait time
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="Marketing Officer (MO)" pool="StarMall">MO updates rental application form of customer rejection
+                        </task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

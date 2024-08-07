@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="BPMN execution TDD developer">Understand BPMN Model</task>
+        <loop condition="no" description="Level satisfies project requirements?" exit="yes" type="dowhile">
+            <seq>
+                <task lane="" pool="BPMN execution TDD developer">Write a failing test</task>
+                <loop condition="no" description="Test green?" exit="yes" type="dowhile">
+                    <seq>
+                        <task lane="" pool="BPMN execution TDD developer">Extend BPMN/mocks to make test pass</task>
+                    </seq>
+                </loop>
+            </seq>
+            <seq>
+                <task lane="" pool="BPMN execution TDD developer">Upgrade Test Level</task>
+            </seq>
+        </loop>
+    </seq>
+</rpst>

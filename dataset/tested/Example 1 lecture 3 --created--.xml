@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Mon" pool="The Smiths">Dinner Party</task>
+        <and>
+            <seq>
+                <task lane="Mon" pool="The Smiths">Prepares Salad</task>
+            </seq>
+            <seq>
+                <xor condition="|||" description="Decide main course" type="">
+                    <seq>
+                        <task lane="Son" pool="The Smiths">have pasta</task>
+                    </seq>
+                    <seq>
+                        <task lane="Son" pool="The Smiths">have steak</task>
+                    </seq>
+                </xor>
+                <task lane="Son" pool="The Smiths">Buy Ingredients</task>
+            </seq>
+        </and>
+        <task lane="Dad" pool="The Smiths">get the ingredients</task>
+        <task lane="Dad" pool="The Smiths">cook</task>
+        <and>
+            <seq>
+                <task lane="Dad" pool="The Smiths">enjoy meal</task>
+            </seq>
+            <seq>
+                <task lane="Son" pool="The Smiths">enjoy meal</task>
+            </seq>
+            <seq>
+                <task lane="Mon" pool="The Smiths">enjoy meal</task>
+            </seq>
+        </and>
+        <task lane="Mon" pool="The Smiths">clean up the plates and utensils</task>
+    </seq>
+</rpst>

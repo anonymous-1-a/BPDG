@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="warehouse &amp; distribution department" pool="Nicolaus Copernicus University in Torun">purchase order received
+        </task>
+        <task lane="ERP system of warehouse &amp; distribution" pool="Nicolaus Copernicus University in Torun">check order against the stock
+        </task>
+        <xor condition="|product is in stock|product is not in stock|" description="" type="">
+            <seq>
+                <task lane="warehouse &amp; distribution department" pool="Nicolaus Copernicus University in Torun">retrieve from the warehouse
+                </task>
+            </seq>
+            <seq>
+                <task lane="ERP system of warehouse &amp; distribution" pool="Nicolaus Copernicus University in Torun">check the raw materials availability
+                </task>
+                <task lane="warehouse &amp; distribution department" pool="Nicolaus Copernicus University in Torun">manufacture the product
+                </task>
+            </seq>
+        </xor>
+        <task lane="sales department" pool="Nicolaus Copernicus University in Torun">confirm the order</task>
+        <and>
+            <seq>
+                <task lane="sales department" pool="Nicolaus Copernicus University in Torun">emit an invoice and wait for the payment
+                </task>
+            </seq>
+            <seq>
+                <task lane="warehouse &amp; distribution department" pool="Nicolaus Copernicus University in Torun">ship product
+                </task>
+            </seq>
+        </and>
+        <task lane="sales department" pool="Nicolaus Copernicus University in Torun">confirm the purchase and archive the order
+        </task>
+    </seq>
+</rpst>

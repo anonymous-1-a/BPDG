@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Level 1 executives" pool="Synovus call center">Receive request for debit card replacement from customer
+        </task>
+        <task lane="Level 1 executives" pool="Synovus call center">Initial identity verification of the caller</task>
+        <task lane="Level 1 executives" pool="Synovus call center">Preliminary data collection</task>
+        <and>
+            <seq>
+                <task lane="Level 1 executives" pool="Synovus call center">Confirm if delivery has to be made to an alternate address
+                </task>
+                <xor condition="|No|Yes|" description="Alternate address required?" type="skip">
+                    <seq>
+                        <task lane="Level 1 executives" pool="Synovus call center">Initiate the process for alternate address
+                        </task>
+                    </seq>
+                </xor>
+            </seq>
+            <seq>
+                <task lane="Level 1 executives" pool="Synovus call center">Assess if the customer is eligible for fee exemption
+                </task>
+                <rigid>
+                    <vertices>
+                        <gateway description="Fee Exempted?" id="62" type="XOR"/>
+                        <task id="60" lane="Supervisor" pool="Synovus call center">Review fee exemption</task>
+                        <gateway description="Supervisor available?" id="57" type="XOR"/>
+                        <gateway description="" id="27" type="XOR"/>
+                        <task id="25" lane="Level 1 executives" pool="Synovus call center">Enter decision (of not exempting fee) in the system
+                        </task>
+                        <gateway description="Fee Exempted?" id="53" type="XOR"/>
+                        <task id="23" lane="Level 1 executives" pool="Synovus call center">Exempt fee, Enter in system
+                        </task>
+                        <task id="51" lane="Manager" pool="Synovus call center">Review Fee exemption</task>
+                        <gateway description="Eligible for fee exemption?" id="20" type="XOR"/>
+                        <gateway description="Fee Exempted?" id="39" type="XOR"/>
+                        <task id="37" lane="Team Lead" pool="Synovus call center">Review fee exemption</task>
+                        <gateway description="" id="65" type="XOR"/>
+                        <gateway description="Team lead available?" id="34" type="XOR"/>
+                    </vertices>
+                    <edges>
+                        <edge source_id="53" target_id="65">No</edge>
+                        <edge source_id="39" target_id="23">Yes</edge>
+                        <edge source_id="34" target_id="37">Yes</edge>
+                        <edge source_id="20" target_id="65">No</edge>
+                        <edge source_id="51" target_id="53"/>
+                        <edge source_id="57" target_id="51">No</edge>
+                        <edge source_id="23" target_id="27"/>
+                        <edge source_id="53" target_id="62">Yes</edge>
+                        <edge source_id="34" target_id="57">No</edge>
+                        <edge source_id="65" target_id="25"/>
+                        <edge source_id="60" target_id="62"/>
+                        <edge source_id="62" target_id="39">Yes</edge>
+                        <edge source_id="57" target_id="60">Yes</edge>
+                        <edge source_id="39" target_id="65">No</edge>
+                        <edge source_id="25" target_id="27"/>
+                        <edge source_id="20" target_id="34">Yes</edge>
+                        <edge source_id="62" target_id="65">No</edge>
+                        <edge source_id="37" target_id="39"/>
+                    </edges>
+                </rigid>
+            </seq>
+        </and>
+        <task lane="Level 2 executives" pool="Synovus call center">Identity verification of caller</task>
+        <task lane="Level 2 executives" pool="Synovus call center">Verify address and clear account holds</task>
+        <task lane="Level 2 executives" pool="Synovus call center">Place order for card replacement</task>
+    </seq>
+</rpst>

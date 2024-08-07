@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Sales Representative" pool="Products">Received Order</task>
+        <task lane="Sales Representative" pool="Products">Collect customer Details</task>
+        <xor condition="|Yes|No|" description="Repair or Replacement ?" type="">
+            <seq>
+                <task lane="Sales Representative" pool="Products">Record Details of Requirement</task>
+                <task lane="Sales Representative" pool="Products">Check items in the stock</task>
+                <task lane="Sales Representative" pool="Products">Calculate price and collect payment from the customer
+                </task>
+            </seq>
+            <seq>
+                <task lane="Sales Representative" pool="Products">Negotiate the order details with customer</task>
+                <task lane="Sales Representative" pool="Products">Prepare a drawing with basic requirements</task>
+                <xor condition="|No|Yes|" description="Extra requirements?" type="skip">
+                    <seq>
+                        <task lane="Sales Representative" pool="Products">Note extra requirements</task>
+                    </seq>
+                </xor>
+                <task lane="Sales Representative" pool="Products">Retailer received commission</task>
+            </seq>
+        </xor>
+        <task lane="Older Clerk" pool="Products">Order arrived</task>
+        <task lane="Older Clerk" pool="Products">Check if the payment is made</task>
+        <xor condition="|No|Yes|" description="" type="Paid?">
+            <seq>
+                <task lane="Older Clerk" pool="Products">Hold for 30 days</task>
+                <task lane="Older Clerk" pool="Products">Payment is not made within 30 days</task>
+                <task lane="Older Clerk" pool="Products">Order dropped</task>
+            </seq>
+            <seq>
+                <xor condition="|No|Yes|" description="installation required or not?" type="skip">
+                    <seq>
+                        <task lane="Installer" pool="Products">Contact warehouse and confirm status of produce</task>
+                        <task lane="Installer" pool="Products">Receive installation requirement from the manager</task>
+                        <xor condition="|yes|No|" description="Is installation finished ?" type="skip">
+                            <seq>
+                                <task lane="Installer" pool="Products">Reschedule installation</task>
+                            </seq>
+                        </xor>
+                        <task lane="Installer" pool="Products">Set status of installation completed and payment details
+                        </task>
+                    </seq>
+                </xor>
+                <task lane="Packer/Assembly" pool="Products">Arrived in packing department</task>
+                <task lane="Packer/Assembly" pool="Products">Put orders in delayed delivery file</task>
+                <xor condition="|Yes|No|" description="Are orders urgent?" type="">
+                    <seq>
+                        <task lane="Packer/Assembly" pool="Products">Priority shipments are shipped</task>
+                        <task lane="Packer/Assembly" pool="Products">End</task>
+                    </seq>
+                    <seq>
+                        <xor condition="|No|Yes|" description="Marked customer pick up?" type="">
+                            <seq>
+                                <task lane="Packer/Assembly" pool="Products">Placed in local delivery area</task>
+                                <task lane="Packer/Assembly" pool="Products">Driver collects the orders</task>
+                                <task lane="Packer/Assembly" pool="Products">End</task>
+                            </seq>
+                            <seq>
+                                <task lane="Packer/Assembly" pool="Products">Placed in pick-up area of loading dock
+                                </task>
+                                <task lane="Packer/Assembly" pool="Products">Delivery service contacts Customer</task>
+                                <task lane="Packer/Assembly" pool="Products">Customer picks up</task>
+                                <task lane="Packer/Assembly" pool="Products">Signed the delivery docket by Customer
+                                </task>
+                                <task lane="Packer/Assembly" pool="Products">End</task>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

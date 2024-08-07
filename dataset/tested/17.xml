@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">SSP receives the invoice</task>
+        <task lane="" pool="">admin office sort the invoice per client and vender</task>
+        <task lane="" pool="">attaches invoice entry form to invoice</task>
+        <task lane="" pool="">enters required info on the invoice entry form</task>
+        <task lane="" pool="">checks the completeness</task>
+        <xor condition="|invoice is not completed|invoice is completed|" description="" type="">
+            <seq>
+                <task lane="" pool="">send a message</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">admin office enters the info for the SLA and checks the priority</task>
+                <xor condition="|low priority|high priority|" description="" type="skip">
+                    <seq>
+                        <task lane="" pool="">admin office applies the red stamp on entry invoice</task>
+                    </seq>
+                </xor>
+                <task lane="" pool="">admin office checks the invoice compliance</task>
+                <xor condition="|invoice is complete|invoice is complete|" description="" type="skip">
+                    <seq>
+                        <task lane="" pool="">the admin office send it to experience staff</task>
+                        <or condition="|||">
+                            <seq>
+                                <task lane="" pool="">the experience staff call the client and request for information
+                                </task>
+                            </seq>
+                            <seq>
+                                <task lane="" pool="">the experience staff send a postal mail requesting the information
+                                </task>
+                                <task lane="" pool="">sent to the client after 10 hours</task>
+                            </seq>
+                        </or>
+                    </seq>
+                </xor>
+                <task lane="" pool="">admin office allocates invoice to DEO</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

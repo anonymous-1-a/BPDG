@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="HR Manager">aquired company</task>
+        <and>
+            <seq>
+                <task lane="" pool="HR Manager">create new cost centers</task>
+            </seq>
+            <seq>
+                <task lane="" pool="HR Manager">create new business units</task>
+                <task lane="" pool="HR Manager">create new divisions</task>
+            </seq>
+        </and>
+        <task lane="" pool="HR Manager">create new departments</task>
+        <task lane="" pool="HR Manager">create new users</task>
+        <and>
+            <seq>
+                <task lane="" pool="HR Manager">create new work schedules</task>
+            </seq>
+            <seq>
+                <task lane="" pool="HR Manager">create new holiday calendars</task>
+            </seq>
+            <seq>
+                <task lane="" pool="HR Manager">create new time profiles</task>
+            </seq>
+            <seq>
+                <task lane="" pool="HR Manager">create new time recording profiles</task>
+            </seq>
+        </and>
+        <task lane="" pool="HR Manager">set new time information in user profiles</task>
+    </seq>
+</rpst>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Human Resources Department" pool="ACME AG">Receipt of application</task>
+        <task lane="Human Resources Department" pool="ACME AG">Send receipt confirmation</task>
+        <task lane="Head of Human Resources" pool="ACME AG">Applicant verified</task>
+        <rigid>
+            <vertices>
+                <gateway description="Application status?" id="31" type="XOR"/>
+                <event id="27" lane="Human Resources Department" pool="ACME AG">Signed employment contract is present
+                </event>
+                <task id="19" lane="Human Resources Department" pool="ACME AG">Send rejection</task>
+                <event id="17" lane="Human Resources Department" pool="ACME AG">Receipt of signed employment contract
+                </event>
+                <task id="15" lane="Human Resources Department" pool="ACME AG">Send employment contract</task>
+                <task id="6" lane="Human Resources Department" pool="ACME AG">Prepare employment agreement</task>
+                <task id="4" lane="Human Resources Department" pool="ACME AG">Invite to job interview</task>
+                <event id="39" lane="Head of Human Resources" pool="ACME AG"/>
+                <gateway description="Applicant suitable?" id="12" type="XOR"/>
+                <event id="38" lane="Head of Human Resources" pool="ACME AG">Applicant rejected</event>
+                <task id="10" lane="Human Resources Department" pool="ACME AG">Carry out job interview</task>
+                <event id="36" lane="Head of Human Resources" pool="ACME AG">Rejection sent</event>
+                <gateway description="" id="34" type="XOR"/>
+            </vertices>
+            <edges>
+                <edge source_id="6" target_id="10"/>
+                <edge source_id="36" target_id="34"/>
+                <edge source_id="4" target_id="6"/>
+                <edge source_id="19" target_id="34"/>
+                <edge source_id="12" target_id="19">No</edge>
+                <edge source_id="31" target_id="4">Accept</edge>
+                <edge source_id="38" target_id="39"/>
+                <edge source_id="17" target_id="27"/>
+                <edge source_id="34" target_id="38"/>
+                <edge source_id="10" target_id="12"/>
+                <edge source_id="12" target_id="15">Yes</edge>
+                <edge source_id="31" target_id="36">Reject</edge>
+                <edge source_id="15" target_id="17"/>
+                <edge source_id="27" target_id="39"/>
+            </edges>
+        </rigid>
+    </seq>
+</rpst>

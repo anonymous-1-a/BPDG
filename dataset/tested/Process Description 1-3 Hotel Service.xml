@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="room-service manager" pool="hotel">takes down the order</task>
+        <and>
+            <seq>
+                <task lane="room-service manager" pool="hotel">assign the order to the waiter</task>
+                <task lane="waiter" pool="hotel">ready a cart</task>
+                <task lane="waiter" pool="hotel">be responsible for nonalcoholic drinks</task>
+            </seq>
+            <seq>
+                <task lane="room-service manager" pool="hotel">submit an order ticket to the kitchen</task>
+                <task lane="kitchen" pool="hotel">prepare the food</task>
+            </seq>
+            <seq>
+                <task lane="room-service manager" pool="hotel">give an order to the sommelier</task>
+                <xor condition="|yes|no|" description="order include wine or some other alcoholic beverage?" type="">
+                    <seq>
+                        <task lane="sommelier" pool="hotel">fetch wine from the cellar and prepare any other alcoholic beverages
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="room-service manager" pool="hotel">do nothing</task>
+                    </seq>
+                </xor>
+            </seq>
+        </and>
+        <task lane="waiter" pool="hotel">deliver the cart to the guests room</task>
+        <task lane="waiter" pool="hotel">return to the room-service station</task>
+        <task lane="waiter" pool="hotel">debit the guests account</task>
+    </seq>
+</rpst>

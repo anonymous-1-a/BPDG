@@ -1,10 +1,9 @@
 # Demonstration
 structure text:
-"""Student Apply for graduation""" Application rejected? if yes, loop. if no, exit.
+"""The hiring manager of the firm develops a position description and then the senior manager reviews the position description.""" Position Description Approved? if No, loop. if Yes, exit.
 process text:
-The student needs to apply for graduation. Should the student's application face rejection, they should initiate a reapplication cycle. If the student's application is approved, they should exit the process.
+The hiring manager of the firm develops a position description, and then the senior manager reviews the position description. If the senior manager disagrees with the position description, the hiring manager remakes it until the senior manager agrees.
 structure text:
 """Student Apply for graduation""" if application rejected, loop. if application not rejected, exit.
 process text:
-The student needs to apply for graduation. Should the student's application face rejection, they should initiate a reapplication cycle. If the student's application is approved, they should exit the process.
-structure text:
+The student applies for graduation. If the student's application is rejected, they should initiate a reapplication cycle. If the student's application is approved, they will graduate.

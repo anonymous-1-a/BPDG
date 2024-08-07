@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Meteorologist" pool="Cemaden">Report daily weather condition</task>
+        <task lane="Meteorologist" pool="Cemaden">Identify areas of attention</task>
+        <task lane="Meteorologist" pool="Cemaden">Report areas for further analysis</task>
+        <and>
+            <seq>
+                <task lane="Hydrologist" pool="Cemaden">Analyze hydrological condition</task>
+                <task lane="Hydrologist" pool="Cemaden">Identify potential events</task>
+                <task lane="Hydrologist" pool="Cemaden">Report a potential event</task>
+            </seq>
+            <seq>
+                <task lane="Disaster Analyst" pool="Cemaden">Analyze communities condition</task>
+                <task lane="Disaster Analyst" pool="Cemaden">Identify potential events</task>
+                <task lane="Disaster Analyst" pool="Cemaden">Report a potential event</task>
+            </seq>
+            <seq>
+                <task lane="Geologist" pool="Cemaden">Analyze geological condition</task>
+                <task lane="Geologist" pool="Cemaden">Identify potential events</task>
+                <task lane="Geologist" pool="Cemaden">Report a potential event</task>
+            </seq>
+        </and>
+        <task lane="Team" pool="Cemaden">Analyze the potential event</task>
+        <xor condition="|[No]|[Yes]|" description="" type="skip">
+            <seq>
+                <task lane="Team" pool="Cemaden">Execute team meeting</task>
+            </seq>
+        </xor>
+        <task lane="Team" pool="Cemaden">Open warning</task>
+        <task lane="Team" pool="Cemaden">Determine the warning level</task>
+        <task lane="Team" pool="Cemaden">Identify the warning reporting member</task>
+        <xor condition="|[Hydrologist]|[Geologist]|" description="" type="">
+            <seq>
+                <task lane="Geologist" pool="Cemaden">Describe geological conditions at the area</task>
+            </seq>
+            <seq>
+                <task lane="Hydrologist" pool="Cemaden">Describe hydrological conditions at the area</task>
+            </seq>
+        </xor>
+        <task lane="Disaster Analyst" pool="Cemaden">Revise the warning file</task>
+        <task lane="Disaster Analyst" pool="Cemaden">Register the warning in organizational systems</task>
+        <task lane="Disaster Analyst" pool="Cemaden">Communicate the warning</task>
+    </seq>
+</rpst>

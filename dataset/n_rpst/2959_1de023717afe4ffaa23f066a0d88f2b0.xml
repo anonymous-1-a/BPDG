@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Department Supervisor" pool="Stonehaven">new batch available</task>
+        <task lane="Department Supervisor" pool="Stonehaven">put basket on the conveyor belt</task>
+        <task lane="Prefitting workstation" pool="Stonehaven">collect basket from the conveyor belt</task>
+        <loop condition="&lt; 100 times" description="" exit="&gt;= 100 times" type="dowhile">
+            <seq>
+                <task lane="Prefitting workstation" pool="Stonehaven">stich for prefitting</task>
+            </seq>
+        </loop>
+        <task lane="Prefitting workstation" pool="Stonehaven">put basket on conveyor belt</task>
+        <task lane="Department Supervisor" pool="Stonehaven">move basket to the next conveyor belt</task>
+        <task lane="joining workstation" pool="Stonehaven">collect basket from the conveyor belt</task>
+        <loop condition="&lt; 100 times" description="" exit="&gt;= 100 times" type="dowhile">
+            <seq>
+                <task lane="joining workstation" pool="Stonehaven">stich for joining</task>
+            </seq>
+        </loop>
+        <task lane="joining workstation" pool="Stonehaven">put basket on conveyor belt</task>
+        <task lane="Department Supervisor" pool="Stonehaven">move basket to the next conveyor belt</task>
+        <task lane="ornamenting workstation" pool="Stonehaven">collect basket from the conveyor belt</task>
+        <loop condition="&lt; 100 times" description="" exit="&gt;= 100 times" type="dowhile">
+            <seq>
+                <task lane="ornamenting workstation" pool="Stonehaven">stich for ornamenting</task>
+            </seq>
+        </loop>
+        <task lane="ornamenting workstation" pool="Stonehaven">put basket on conveyor belt</task>
+        <task lane="Department Supervisor" pool="Stonehaven">move basket to the steaming oven</task>
+        <task lane="Steaming department" pool="Stonehaven">Steam</task>
+    </seq>
+</rpst>

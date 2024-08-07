@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="DVMS Plant">Order received</task>
+        <task lane="" pool="DVMS Plant">Winding</task>
+        <and>
+            <seq>
+                <task lane="" pool="DVMS Plant">Assembly</task>
+            </seq>
+            <seq>
+                <task lane="" pool="DVMS Plant">Core making</task>
+            </seq>
+        </and>
+        <task lane="" pool="DVMS Plant">Insulation</task>
+        <task lane="" pool="DVMS Plant">Heat treatment</task>
+        <task lane="" pool="DVMS Plant">Brazing</task>
+        <task lane="" pool="DVMS Plant">Testing</task>
+        <xor condition="|No|Yes|" description="Transformer operates correctly?" type="">
+            <seq>
+                <task lane="" pool="DVMS Plant">Termination</task>
+            </seq>
+            <seq>
+                <task lane="" pool="DVMS Plant">Quality control</task>
+                <xor condition="|Yes|No|" description="Quality assured?" type="">
+                    <seq>
+                        <task lane="" pool="DVMS Plant">Packing</task>
+                        <task lane="" pool="DVMS Plant">Dispatched to destination</task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="DVMS Plant">Termination</task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

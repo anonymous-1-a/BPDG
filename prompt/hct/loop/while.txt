@@ -2,8 +2,8 @@
 structure text:
 Data updated? if no, loop """Student Refresh page""" if yes, exit.
 process text:
-If the data has not been updated, the student should refresh the page and repeat this process. Once the data has been updated, the student can exit this flow.
+If the data has not been updated, the student should refresh the page and repeat this process until the data is updated.
 structure text:
-if manager not satisfied, loop """The cleaner first mixes the detergent before mopping the floor.""" if manager satisfied, exit.
+if Order not processed, loop """The merchant selects an order, and if an invoice is required for the order, it will make an invoice based on the order information. Then click the Completed button to indicate that the order has been processed.""" if All orders processed, exit.
 process text:
-If the manager is dissatisfied with the work, the cleaner should repeat the process. First, the cleaner mixes the detergent, then mops the floor. Once the manager is satisfied, the cleaner may exit.
+If the order has not been processed, the merchant selects an order. If the order needs to be invoiced, it will make an invoice based on the order information. Then click the Completed button to indicate that the order processing is complete. Then continue to select order processing until all orders are processed.

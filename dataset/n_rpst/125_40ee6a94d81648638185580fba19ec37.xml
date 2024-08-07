@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Customer service" pool="Customer service department">Confirmed order obtained</task>
+        <task lane="Customer service" pool="Customer service department">Check production location</task>
+        <xor condition="|Right location|Wrong location|" description="" type="skip">
+            <seq>
+                <task lane="Customer service" pool="Customer service department">Change location of production</task>
+            </seq>
+        </xor>
+        <task lane="Customer service" pool="Customer service department">Check delivery date</task>
+        <xor condition="|Right delivery date|Wrong delivery date|" description="" type="skip">
+            <seq>
+                <task lane="Customer service" pool="Customer service department">Edit delivery date</task>
+            </seq>
+        </xor>
+        <task lane="Customer service" pool="Customer service department">Check for open orders</task>
+        <xor condition="|Usual amount of articles|Very small amount of articles|" description="" type="skip">
+            <seq>
+                <task lane="Customer service" pool="Customer service department">Check for sample or happy gateau</task>
+                <xor condition="|Order is placed|Order is not placed|" description="" type="skip">
+                    <seq>
+                        <task lane="Customer service" pool="Customer service department">Call customer</task>
+                        <xor condition="|Order is correct|Order needs to be adjusted|" description="" type="skip">
+                            <seq>
+                                <task lane="Customer service" pool="Customer service department">Edit order</task>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

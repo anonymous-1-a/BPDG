@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Recordings IT System" pool="Hestháls">Every working day</task>
+        <task lane="Recordings IT System" pool="Hestháls">Inspection documentation received</task>
+        <task lane="Recordings IT System" pool="Hestháls">Every day 10 pm</task>
+        <task lane="Recordings IT System" pool="Hestháls">Log documentation</task>
+        <task lane="Manager vehicle department" pool="Hestháls">Every morning</task>
+        <task lane="Manager vehicle department" pool="Hestháls">Review recordings</task>
+        <task lane="Recordings IT System" pool="Hestháls">Records transmitted</task>
+        <task lane="Supervisor reception area" pool="Hestháls">Inspection document received</task>
+        <task lane="Supervisor reception area" pool="Hestháls">Check inspection document</task>
+        <xor condition="|No errors identified|Errors identified|" description="" type="skip">
+            <seq>
+                <task lane="Supervisor reception area" pool="Hestháls">Oversee error correction</task>
+                <task lane="Recordings IT System" pool="Hestháls">Records transmitted</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

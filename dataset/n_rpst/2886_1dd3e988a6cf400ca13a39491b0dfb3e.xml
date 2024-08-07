@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Information system" pool="Mighty Jane Doe">Order received</task>
+        <task lane="Information system" pool="Mighty Jane Doe">Send confirmation email to the customer</task>
+        <task lane="Order fulfilment department" pool="Mighty Jane Doe">Pack order</task>
+        <task lane="Order fulfilment department" pool="Mighty Jane Doe">Check Whether the shipment needs to have bubble protection or not
+        </task>
+        <xor condition="|Bubble protection not needed|Bubble protection needed|" description="" type="skip">
+            <seq>
+                <task lane="Order fulfilment department" pool="Mighty Jane Doe">Add bubble protection</task>
+            </seq>
+        </xor>
+        <task lane="Order fulfilment department" pool="Mighty Jane Doe">Pass package to the Warehouse</task>
+        <task lane="Warehouse" pool="Mighty Jane Doe">Check whether the post is normal or fast courier</task>
+        <xor condition="|If Normal|if fast courier|" description="" type="">
+            <seq>
+                <task lane="Warehouse" pool="Mighty Jane Doe">Fill in post label</task>
+            </seq>
+            <seq>
+                <task lane="Warehouse" pool="Mighty Jane Doe">get quote from the contracted courier</task>
+                <task lane="Warehouse" pool="Mighty Jane Doe">Prepare courier paperwork</task>
+            </seq>
+        </xor>
+        <task lane="Warehouse" pool="Mighty Jane Doe">Combine the paperwork with the package for delivery pickup</task>
+    </seq>
+</rpst>

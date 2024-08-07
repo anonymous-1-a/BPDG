@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Technical Team" pool="CAPGEMINI TECHNOLOGY SERVICES INDIA LIMITED">Interview conducted</task>
+        <task lane="Technical Team" pool="CAPGEMINI TECHNOLOGY SERVICES INDIA LIMITED">Conduct Technical Round</task>
+        <xor condition="|No|Yes|" description="Pass?" type="">
+            <seq>
+                <task lane="Technical Team" pool="CAPGEMINI TECHNOLOGY SERVICES INDIA LIMITED">Reject not qualified candidates
+                </task>
+            </seq>
+            <seq>
+                <task lane="HR Team" pool="CAPGEMINI TECHNOLOGY SERVICES INDIA LIMITED">Conduct HR Round</task>
+                <xor condition="|Yes|No|" description="Pass?" type="">
+                    <seq>
+                        <task lane="HR Team" pool="CAPGEMINI TECHNOLOGY SERVICES INDIA LIMITED">Create Final Selection List
+                        </task>
+                        <task lane="HR Team" pool="CAPGEMINI TECHNOLOGY SERVICES INDIA LIMITED">Send Offer Letter</task>
+                    </seq>
+                    <seq>
+                        <task lane="HR Team" pool="CAPGEMINI TECHNOLOGY SERVICES INDIA LIMITED">Reject not qualified candidates
+                        </task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

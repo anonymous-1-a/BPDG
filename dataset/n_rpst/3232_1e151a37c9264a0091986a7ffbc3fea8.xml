@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <or condition="|Digital|Print out and pick up|Print-out and delivery|">
+            <seq>
+                <task lane="" pool="Perfect Pixels">Send dropbox link</task>
+            </seq>
+            <seq>
+                <task lane="" pool="Perfect Pixels">Drop prints of at counter</task>
+            </seq>
+            <seq>
+                <task lane="" pool="Perfect Pixels">Send postal delivery</task>
+            </seq>
+        </or>
+        <task lane="" pool="Perfect Pixels">Decide on voucher</task>
+        <xor condition="|Other|Private customer with invoice &gt; 200|" description="" type="skip">
+            <seq>
+                <task lane="" pool="Perfect Pixels">Send voucher</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

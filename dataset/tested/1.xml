@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">The credit company receives the credit information from the customer</task>
+        <xor condition="|yes|no|" description="Does the requested amount be greater than 1M$?" type="">
+            <seq>
+                <task lane="" pool="">an approval must be requested</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">the company assess the risk of the credit</task>
+                <xor condition="|no|yes|" description="Is the risk high after the assessment?" type="">
+                    <seq>
+                        <task lane="" pool="">the credit is accepted</task>
+                        <task lane="" pool="">an email is sent to the customer</task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="">an approval must be requested</task>
+                        <and>
+                            <seq>
+                                <task lane="" pool="">an email is sent to the customer</task>
+                            </seq>
+                            <seq>
+                                <task lane="" pool="">the credit could be accepted or rejected</task>
+                            </seq>
+                        </and>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

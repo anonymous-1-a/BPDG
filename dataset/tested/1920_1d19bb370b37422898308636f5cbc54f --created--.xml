@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Student" pool="Complete a programme of study with internship">Enrol in study</task>
+        <and>
+            <seq>
+                <loop condition="No" description="Can I have chosen topic?" exit="Yes" type="dowhile">
+                    <seq>
+                        <task lane="Student" pool="Complete a programme of study with internship">Choose advisor and topic of a thesis
+                        </task>
+                        <task lane="Student" pool="Complete a programme of study with internship">Receive a message from Advisor of thesis
+                        </task>
+                    </seq>
+                </loop>
+            </seq>
+            <seq>
+                <task lane="Student" pool="Complete a programme of study with internship">Obtain 120 credits</task>
+            </seq>
+            <seq>
+                <task lane="Student" pool="Complete a programme of study with internship">Complete all mandatory curses
+                </task>
+            </seq>
+            <seq>
+                <loop condition="Rejected" description="" exit="Allowed" type="dowhile">
+                    <seq>
+                        <task lane="Student" pool="Complete a programme of study with internship">Submit an application for internship
+                        </task>
+                        <task lane="Office for studies" pool="Complete a programme of study with internship">Evaluation of application
+                        </task>
+                    </seq>
+                </loop>
+                <task lane="Student" pool="Complete a programme of study with internship">Completition of internship
+                </task>
+            </seq>
+        </and>
+        <and>
+            <seq>
+                <loop condition="Fail" description="" exit="Pass" type="dowhile">
+                    <seq>
+                        <loop condition="requirements not fulfill" description="" exit="requirements fulfill" type="dowhile">
+                            <seq>
+                                <task lane="Student" pool="Complete a programme of study with internship">Submit an application for state final examination
+                                </task>
+                                <task lane="Office for studies" pool="Complete a programme of study with internship">Check fulfilment of requirements
+                                </task>
+                            </seq>
+                        </loop>
+                        <task lane="Student" pool="Complete a programme of study with internship">State final exam
+                        </task>
+                    </seq>
+                </loop>
+            </seq>
+            <seq>
+                <loop condition="Not defended" description="" exit="Defended" type="dowhile">
+                    <seq>
+                        <loop condition="requirements not fulfill" description="" exit="requirements fulfill" type="dowhile">
+                            <seq>
+                                <task lane="Student" pool="Complete a programme of study with internship">Submit an application for defence of thesis
+                                </task>
+                                <task lane="Office for studies" pool="Complete a programme of study with internship">Check fulfilment of requirements
+                                </task>
+                            </seq>
+                        </loop>
+                        <task lane="Student" pool="Complete a programme of study with internship">Completion of thesis
+                        </task>
+                        <task lane="Student" pool="Complete a programme of study with internship">Defence of thesis
+                        </task>
+                    </seq>
+                </loop>
+            </seq>
+        </and>
+        <task lane="Student" pool="Complete a programme of study with internship">Graduation ceremony</task>
+    </seq>
+</rpst>

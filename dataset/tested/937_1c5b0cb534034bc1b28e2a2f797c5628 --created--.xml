@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="Cambio Reservation Platform">Car is unlocked for customer</task>
+        <loop condition="Reservation time updated" description="" exit="Reservation time elapsed or Reservation canceled" type="dowhile">
+            <seq>
+                <task lane="" pool="Cambio Reservation Platform">Update end time for car rent</task>
+                <task lane="" pool="Cambio Reservation Platform">Notify customer</task>
+            </seq>
+        </loop>
+        <xor condition="|Reservation time elapsed|Reservation canceled|" description="" type="event based">
+            <seq>
+                <task lane="" pool="Cambio Reservation Platform">Send instructions to return car</task>
+            </seq>
+            <seq>
+                <task lane="" pool="Cambio Reservation Platform">Send cancelling confirmation</task>
+                <task lane="" pool="Cambio Reservation Platform">Send instructions to return car</task>
+            </seq>
+        </xor>
+        <task lane="" pool="Cambio Reservation Platform">Send instructions to return car</task>
+    </seq>
+</rpst>

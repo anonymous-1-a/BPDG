@@ -4,6 +4,6 @@ Replacement Needed? if Yes, """Auto Body Mechanic of Old-timers Garage (OTG) Rep
 process text:
 If replacement is needed, the auto body mechanic of the Old-timers Garage (OTG) will replace the tires. If a replacement is not needed, they will skip that step.
 structure text:
-if Update needed, """Supply chain dep of Cylinder Planning Update Delivery plan""" if Update not required, skip.
+if Update needed, """Supply chain dep of Cylinder Update Delivery plan""" if Update not required, skip.
 process text:
-If an update is required, Cylinder Planning's supply chain department will update the delivery plan. If no update is required, they will disregard the step.
+If an update is required, Cylinder's supply chain department will update the delivery plan.

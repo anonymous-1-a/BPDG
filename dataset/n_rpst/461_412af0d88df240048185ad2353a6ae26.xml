@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Manager" pool="Yummy Cookies">price and delivery time</task>
+        <task lane="Manager" pool="Yummy Cookies">Calculate offer</task>
+        <task lane="Manager" pool="Yummy Cookies">Send offer</task>
+    </seq>
+</rpst>

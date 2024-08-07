@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">IS receive data validation error</task>
+        <task lane="" pool="">drop-off tech checks typos</task>
+        <xor condition="|no|yes|" description="customer can correct the mistake" type="">
+            <seq>
+                <task lane="" pool="">scour solution from public sources</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">customer correct</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

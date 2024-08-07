@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Quality Control Officer (QCO)" pool="Hershey">Cocoa Beans received</task>
+        <task lane="Quality Control Officer (QCO)" pool="Hershey">QCO inspect cocoas beans for defects.</task>
+        <rigid>
+            <vertices>
+                <task id="39" lane="Logistics Manager (LM)" pool="Hershey">LM checks the updated PO via the ERP system and prepares the sales invoice for distributor.
+                </task>
+                <task id="68" lane="Chief Sales Officer (CSO)" pool="Hershey">CSO obtains the chocolate inventory list from LM
+                </task>
+                <task id="36" lane="Machine Operator (MO)" pool="Hershey">MO adds either Caramel or Peanut butter to the chocolate (40%).
+                </task>
+                <event id="96" lane="Logistics Manager (LM)" pool="Hershey"/>
+                <task id="64" lane="Chief Sales Officer (CSO)" pool="Hershey">CSO receives PO from the distributor via email and inputs the details into the ERP system.
+                </task>
+                <gateway description="Are the chocolate to be flavoured?" id="33" type="XOR"/>
+                <gateway description="" id="94" type="XOR"/>
+                <task id="31" lane="Machine Operator (MO)" pool="Hershey">MO tempers and cools the chocolate liquor until its molded.
+                </task>
+                <gateway description="" id="92" type="XOR"/>
+                <task id="60" lane="Logistics Manager (LM)" pool="Hershey">LM checks chocolate shortage via ERP and prepare a purchase invoice for cocoa beans and enter this into SCM
+                </task>
+                <task id="19" lane="Quality Control Officer (QCO)" pool="Hershey">QCO approves the cocoa beans and removes the unclean substances on the beans (80%).
+                </task>
+                <gateway description="" id="49" type="XOR"/>
+                <task id="17" lane="Quality Control Officer (QCO)" pool="Hershey">QCO takes samples (5%) from each cocoa bean’s batch and makes it into chocolate liquor.
+                </task>
+                <task id="79" lane="Cocoa Crusher (CC)" pool="Hershey">CC crushes the cocoa nibs properly via the crusting machine.
+                </task>
+                <task id="47" lane="Logistics Manager (LM)" pool="Hershey">CC performs manual grinding of cocoa nibs (15%).
+                </task>
+                <task id="75" lane="Chief Sales Officer (CSO)" pool="Hershey">CSO updates shortage amount into ERP system.
+                </task>
+                <gateway description="Are the cocoa beans crushed properly?" id="44" type="XOR"/>
+                <gateway description="Are the cocoa beans defected?" id="12" type="XOR"/>
+                <task id="73" lane="Chief Sales Officer (CSO)" pool="Hershey">CSO refers to PO and determines the amount of shortage of chocolate that they need to produce.
+                </task>
+                <task id="71" lane="Chief Sales Officer (CSO)" pool="Hershey">CSO updates chocolate inventory list into ERP system.
+                </task>
+                <task id="9" lane="Quality Control Officer (QCO)" pool="Hershey">QCO rejects the substandard batch of cocoa beans and fills in the Cocoa Beans Defect Form manually (20%).
+                </task>
+                <task id="29" lane="Machine Operator (MO)" pool="Hershey">MO rotates the chocolate liquor via the conch machine (85%).
+                </task>
+                <event id="59" lane="Logistics Manager (LM)" pool="Hershey">Cocoa Beans Requested</event>
+                <task id="89" lane="Dispatch Personnel (DP)" pool="Hershey">DP brings the Cocoa Bean Defect Form from QCO to LM.
+                </task>
+                <gateway description="Quality approved by QCO?" id="6" type="XOR"/>
+                <task id="27" lane="Machine Operator (MO)" pool="Hershey">MO winnows the shells from the cocoa beans via in the winnowing machine.
+                </task>
+                <task id="56" lane="Logistics Manager (LM)" pool="Hershey">LM requests new batch of cocoa beans from supplier via email.
+                </task>
+                <task id="87" lane="Dispatch Personnel (DP)" pool="Hershey">DP delivers the chocolate from MO to the LM at the office (60%).
+                </task>
+                <task id="4" lane="Quality Control Officer (QCO)" pool="Hershey">QCO conduct extensive sampling for each chocolate batch to test for flavour and aroma.
+                </task>
+                <task id="25" lane="Machine Operator (MO)" pool="Hershey">MO roasts the cocoas beans in the roaster machine.
+                </task>
+                <event id="55" lane="Logistics Manager (LM)" pool="Hershey">Chocolate Delivered</event>
+                <task id="85" lane="Dispatch Personnel (DP)" pool="Hershey">DP receives defected cocoa beans and cocoa beans defect form from QCO and disposes the defected beans.
+                </task>
+                <task id="21" lane="Quality Control Officer (QCO)" pool="Hershey">QCO rejects defective beans and fills in the Cocoa Beans Defect Form manually and passes the form to DP (10%).
+                </task>
+                <task id="51" lane="Logistics Manager (LM)" pool="Hershey">LM stores the batches of chocolate in the warehouse and manually prepares a chocolate inventory list.
+                </task>
+                <task id="82" lane="Assembly Line Worker (ALW)" pool="Hershey">ALW ensures that the approved cocoa beans are sorted into batches by the machine (90%).
+                </task>
+            </vertices>
+            <edges>
+                <edge source_id="71" target_id="64"/>
+                <edge source_id="39" target_id="55"/>
+                <edge source_id="4" target_id="6"/>
+                <edge source_id="79" target_id="44"/>
+                <edge source_id="92" target_id="87"/>
+                <edge source_id="6" target_id="19">Approved, 80%</edge>
+                <edge source_id="29" target_id="31"/>
+                <edge source_id="59" target_id="96"/>
+                <edge source_id="12" target_id="21">Defected, 10%</edge>
+                <edge source_id="60" target_id="39"/>
+                <edge source_id="64" target_id="73"/>
+                <edge source_id="33" target_id="36">Flavoured, 40%</edge>
+                <edge source_id="6" target_id="9">Not Approved, 20%</edge>
+                <edge source_id="94" target_id="89"/>
+                <edge source_id="68" target_id="71"/>
+                <edge source_id="25" target_id="27"/>
+                <edge source_id="47" target_id="49"/>
+                <edge source_id="33" target_id="92">Original, 60%</edge>
+                <edge source_id="27" target_id="79"/>
+                <edge source_id="55" target_id="96"/>
+                <edge source_id="85" target_id="94"/>
+                <edge source_id="82" target_id="17"/>
+                <edge source_id="36" target_id="92"/>
+                <edge source_id="56" target_id="59"/>
+                <edge source_id="87" target_id="51"/>
+                <edge source_id="9" target_id="85"/>
+                <edge source_id="73" target_id="75"/>
+                <edge source_id="21" target_id="94"/>
+                <edge source_id="49" target_id="29"/>
+                <edge source_id="75" target_id="60"/>
+                <edge source_id="44" target_id="47">Not crushed properly, 15%</edge>
+                <edge source_id="31" target_id="33"/>
+                <edge source_id="12" target_id="82">Not Defected, 90%</edge>
+                <edge source_id="17" target_id="4"/>
+                <edge source_id="51" target_id="68"/>
+                <edge source_id="89" target_id="56"/>
+                <edge source_id="44" target_id="49">Crushed properly, 85%</edge>
+                <edge source_id="19" target_id="25"/>
+            </edges>
+        </rigid>
+    </seq>
+</rpst>

@@ -1,9 +1,9 @@
 # Demonstration
 structure text:
-"""Makeup Artist Draw eyelashes""" and """Makeup Artist Apply blush""" and """Makeup Artist apply lipstick"""
+"""Makeup Artist Draw eyelashes""" meanwhile """Makeup Artist Apply blush""" meanwhile """Makeup Artist apply lipstick"""
 process text:
-The makeup artist should draw eyelashes, apply blush, and apply lipstick.
+The makeup artist should draw eyelashes, apply blush, and apply lipstick simultaneously.
 structure text:
-"""If the system finds a suitable fit, it selects the room and time slot. If the system does not find an appropriate fit, it will check later.""" and """The finance department should first validate the loan activation, then execute the initial payment.""" and """The administration should return the documents to the client."""
+"""If the system finds a suitable fit, it selects the room and time slot. If the system does not find an appropriate fit, it will check later.""" meanwhile """The finance department should first validate the loan activation, then execute the initial payment.""" meanwhile """The administration should return the documents to the client."""
 process text:
-The system checks for a suitable fit; if found, it selects the room and time slot; if not, it will revisit the task later. Meanwhile, the finance department first validates the loan activation and then processes the initial payment. At the same time, the administration returns the documents to the client.
+The system checks for a suitable fit; if found, it selects the room and time slot; if not, it will revisit the task later. Meanwhile, the finance department first validates the loan activation and then processes the initial payment. The administration returns the documents to the client at the same time.

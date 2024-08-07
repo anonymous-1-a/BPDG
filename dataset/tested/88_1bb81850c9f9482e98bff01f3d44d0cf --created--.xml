@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Main mechanic" pool="OTG">Do a diagnostic check</task>
+        <task lane="Main mechanic" pool="OTG">Make a repair plan</task>
+        <and>
+            <seq>
+                <xor condition="|no|yes|" description="Is the leather in the seats worn out?" type="skip">
+                    <seq>
+                        <task lane="Interior mechanic" pool="OTG">Fix the seats</task>
+                    </seq>
+                </xor>
+                <xor condition="|no|yes|" description="Dashboard broken?" type="skip">
+                    <seq>
+                        <task lane="Interior mechanic" pool="OTG">Fix the dashboard</task>
+                    </seq>
+                </xor>
+                <xor condition="|no|yes|" description="Panels broken?" type="skip">
+                    <seq>
+                        <task lane="Interior mechanic" pool="OTG">Fix the panels</task>
+                    </seq>
+                </xor>
+                <task lane="Interior mechanic" pool="OTG">Make a report of the repairs</task>
+            </seq>
+            <seq>
+                <xor condition="|no|yes|" description="Does the car has scratches and dents?" type="skip">
+                    <seq>
+                        <and>
+                            <seq>
+                                <task lane="Auto-body mechanic" pool="OTG">Repair the dents</task>
+                            </seq>
+                            <seq>
+                                <task lane="Auto-body mechanic" pool="OTG">Create a list of the dents</task>
+                            </seq>
+                        </and>
+                    </seq>
+                </xor>
+                <task lane="Auto-body mechanic" pool="OTG">Paint the car</task>
+                <task lane="Auto-body mechanic" pool="OTG">Polish the car</task>
+                <xor condition="|no|yes|" description="Are the tires broken?" type="skip">
+                    <seq>
+                        <task lane="Auto-body mechanic" pool="OTG">Replace the tires</task>
+                    </seq>
+                </xor>
+                <task lane="Auto-body mechanic" pool="OTG">Write a report about the activities he has done</task>
+            </seq>
+            <seq>
+                <loop condition="no" description="Is the engine and the report ok?" exit="yes" type="dowhile">
+                    <seq>
+                        <task lane="Main mechanic" pool="OTG">Repair the engine</task>
+                        <task lane="Main mechanic" pool="OTG">Create an appropriate report</task>
+                    </seq>
+                </loop>
+            </seq>
+        </and>
+        <task lane="Main mechanic" pool="OTG">Collect all the data</task>
+        <task lane="Main mechanic" pool="OTG">Do final check</task>
+        <xor condition="|yes|no|" description="Does the engine work?" type="skip">
+            <seq>
+                <task lane="Main mechanic" pool="OTG">Finalize the engine</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

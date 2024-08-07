@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Pharmacist" pool="Pharmacy">Add customer detials</task>
+        <task lane="Pharmacist" pool="Pharmacy">Ask for patient's medicare card</task>
+        <xor condition="|Yes|No|" description="Has a medical card？" type="">
+            <seq>
+                <xor condition="|Yes|No|" description="Is the medicare card valid?" type="skip">
+                    <seq>
+                        <task lane="Pharmacist" pool="Pharmacy">Check system or Call Medicare</task>
+                    </seq>
+                </xor>
+                <task lane="Pharmacist" pool="Pharmacy">Add patient's information and medicare card detail</task>
+            </seq>
+            <seq>
+                <and>
+                    <seq>
+                        <task lane="Pharmacist" pool="Pharmacy">Add patient's information based on the information list in the prescription
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="Pharmacist" pool="Pharmacy">Asking support id and confirm the identity</task>
+                    </seq>
+                </and>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

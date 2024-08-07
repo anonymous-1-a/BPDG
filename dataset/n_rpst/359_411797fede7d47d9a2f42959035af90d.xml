@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Production" pool="Cherchel Branch">get raw materials from warehouse</task>
+        <task lane="Production" pool="Cherchel Branch">weigh the raw materials</task>
+        <task lane="Control" pool="Cherchel Branch">In process control</task>
+        <xor condition="||||" description="" type="">
+            <seq>
+                <task lane="Production" pool="Cherchel Branch">Dry Granulation</task>
+            </seq>
+            <seq>
+                <task lane="Production" pool="Cherchel Branch">Direct compression</task>
+            </seq>
+            <seq>
+                <task lane="Production" pool="Cherchel Branch">Wet Granulation</task>
+            </seq>
+        </xor>
+        <task lane="Control" pool="Cherchel Branch">In process control</task>
+        <xor condition="|Tablet|Powder|" description="" type="">
+            <seq>
+                <task lane="Production" pool="Cherchel Branch">Tablet press</task>
+                <task lane="Production" pool="Cherchel Branch">Coating</task>
+                <task lane="Production" pool="Cherchel Branch">Inspection</task>
+                <task lane="Production" pool="Cherchel Branch">Primary packaging</task>
+            </seq>
+            <seq>
+                <task lane="Production" pool="Cherchel Branch">Filling</task>
+            </seq>
+        </xor>
+        <task lane="Production" pool="Cherchel Branch">secondary packaging</task>
+        <task lane="Production" pool="Cherchel Branch">Transport final product to the warehouse</task>
+    </seq>
+</rpst>

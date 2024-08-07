@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Sales Department" pool="Company">Customer Order</task>
+        <task lane="Sales Department" pool="Company">Check inventory</task>
+        <xor condition="|Yes|No|" description="Enough products?" type="">
+            <seq>
+                <task lane="Sales Department" pool="Company">Create order to the warehouse</task>
+            </seq>
+            <seq>
+                <task lane="Sales Department" pool="Company">Create production order</task>
+                <xor condition="|Yes|No|" description="Enough components?" type="skip">
+                    <seq>
+                        <task lane="Purchasing" pool="Company">Create purchase order</task>
+                        <task lane="Purchasing" pool="Company">Select supplier</task>
+                        <and>
+                            <seq>
+                                <task lane="Purchasing" pool="Company">Arrange transportation for the components</task>
+                            </seq>
+                            <seq>
+                                <task lane="Purchasing" pool="Company">Purchase from the supplier</task>
+                            </seq>
+                        </and>
+                    </seq>
+                </xor>
+                <task lane="Production" pool="Company">Production</task>
+            </seq>
+        </xor>
+        <task lane="Warehouse" pool="Company">Collecting and packing the products</task>
+        <and>
+            <seq>
+                <task lane="Sales Department" pool="Company">Arrange transportation for the products</task>
+            </seq>
+            <seq>
+                <task lane="Sales Department" pool="Company">Invoice to the customer</task>
+            </seq>
+        </and>
+        <task lane="Warehouse" pool="Company">Ship out the products</task>
+    </seq>
+</rpst>

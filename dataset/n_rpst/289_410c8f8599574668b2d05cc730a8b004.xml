@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="SAP CERT" pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">SAP CERT Notification of High/Medium /Low Patches
+        </task>
+        <task lane="Non-Scalable Unit" pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Check if any of the Patches are applicable
+        </task>
+        <xor condition="|No|Yes|" description="Are there any Patches applicable?" type="skip">
+            <seq>
+                <task lane="Non-Scalable Unit" pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Classify online/offline Patches, downtime (if necessary)
+                </task>
+                <task lane="Non-Scalable Unit" pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Open ticket for RfC
+                </task>
+                <xor condition="|Yes|No|" description="Is the patch a pre-approved Change?" type="skip">
+                    <seq>
+                        <task lane="Change Advisory Board (CAB)"
+                              pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Approve/reject RfC
+                        </task>
+                    </seq>
+                </xor>
+                <loop condition="Yes" description="Is there any complaint/error during testing?" exit="No"
+                      type="dowhile">
+                    <seq>
+                        <task lane="Non-Scalable Unit"
+                              pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Prepare for testing and test the Patches on the sandbox systems
+                        </task>
+                    </seq>
+                </loop>
+                <task lane="Non-Scalable Unit" pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Announce the Change internally
+                </task>
+                <xor condition="|No|Yes|" description="Are these online Patches?" type="">
+                    <seq>
+                        <task lane="Non-Scalable Unit"
+                              pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Update the system
+                        </task>
+                        <task lane="Non-Scalable Unit"
+                              pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Reboot servers
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="Non-Scalable Unit"
+                              pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Apply online Patches
+                        </task>
+                    </seq>
+                </xor>
+                <task lane="Non-Scalable Unit" pool="Security Patch Management Process (CIS, ByD, C4C, Payroll)">Close the ticket
+                </task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

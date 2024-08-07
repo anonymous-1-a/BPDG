@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <rigid>
+            <vertices>
+                <event id="33" lane="Supervisor" pool="No Particular University"/>
+                <event id="32" lane="Supervisor" pool="No Particular University">Request Rejected</event>
+                <task id="30" lane="Supervisor" pool="No Particular University">Check available funds in nominated account
+                </task>
+                <task id="28" lane="Supervisor" pool="No Particular University">Approve the travel form with digital signatures
+                </task>
+                <gateway description="Request Approved?" id="25" type="XOR"/>
+                <task id="23" lane="Supervisor" pool="No Particular University">Comment Issues on the form</task>
+                <task id="18" lane="Supervisor" pool="No Particular University">Check the request for travel form</task>
+                <gateway description="Amendment Required?" id="20" type="XOR"/>
+                <gateway description="Make Changes?" id="8" type="XOR"/>
+                <event id="16" lane="Employee" pool="No Particular University">Request Approved</event>
+                <event id="15" lane="Employee" pool="No Particular University">Request Cancelled</event>
+                <task id="6" lane="Employee" pool="No Particular University">Upload the form on Approval Management System
+                </task>
+                <task id="4" lane="Employee" pool="No Particular University">Complete the request for travel form in MS Word
+                </task>
+                <task id="13" lane="Employee" pool="No Particular University">Download Approved Request for Travel Form
+                </task>
+                <gateway description="" id="11" type="XOR"/>
+            </vertices>
+            <edges>
+                <edge source_id="32" target_id="33"/>
+                <edge source_id="23" target_id="8"/>
+                <edge source_id="25" target_id="28">Yes</edge>
+                <edge source_id="8" target_id="11">Yes</edge>
+                <edge source_id="20" target_id="25">No</edge>
+                <edge source_id="20" target_id="23">Yes</edge>
+                <edge source_id="6" target_id="18"/>
+                <edge source_id="30" target_id="20"/>
+                <edge source_id="11" target_id="4"/>
+                <edge source_id="15" target_id="33"/>
+                <edge source_id="18" target_id="30"/>
+                <edge source_id="4" target_id="6"/>
+                <edge source_id="28" target_id="13"/>
+                <edge source_id="13" target_id="16"/>
+                <edge source_id="25" target_id="32">No</edge>
+                <edge source_id="8" target_id="15">No</edge>
+                <edge source_id="16" target_id="33"/>
+            </edges>
+        </rigid>
+    </seq>
+</rpst>

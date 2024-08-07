@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">The process starts with the Provision Team receiving a request from a Customer</task>
+        <task lane="" pool="">the team has to identify the necessary parts</task>
+        <task lane="" pool="">they may ask for more information to the customer</task>
+        <task lane="" pool="">the team needs to check if all parts are available</task>
+        <xor condition="|no|yes|" description="all parts are available?" type="">
+            <seq>
+                <task lane="" pool="">the team must record the petition, make an order to Daisuki, and contact the customer once the team collects all parts
+                </task>
+                <task lane="" pool="">the items are recollected by the customer</task>
+                <task lane="" pool="">the final payment is received</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">they are supplied to the customer</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

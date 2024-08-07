@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="ISP">1 day of month</task>
+        <task lane="" pool="ISP">Send invoice to customer</task>
+        <task lane="" pool="ISP">Day 7</task>
+        <task lane="" pool="ISP">Debit full amount from customer's account</task>
+        <xor condition="|No|Yes|" description="Is transaction failed?" type="skip">
+            <seq>
+                <task lane="" pool="ISP">Day 8</task>
+                <task lane="" pool="ISP">Notify Customer</task>
+                <task lane="" pool="ISP">Day 9</task>
+                <task lane="" pool="ISP">Transaction is re-attempted</task>
+                <xor condition="|No|Yes|" description="Failed again?" type="skip">
+                    <seq>
+                        <task lane="" pool="ISP">Day 10</task>
+                        <task lane="" pool="ISP">Late fee charged</task>
+                        <task lane="" pool="ISP">Day 14</task>
+                        <task lane="" pool="ISP">Suspended Internet Service</task>
+                        <task lane="" pool="ISP">Day 30</task>
+                        <and>
+                            <seq>
+                                <task lane="" pool="ISP">Close account</task>
+                            </seq>
+                            <seq>
+                                <task lane="" pool="ISP">Disconnection fee aplied</task>
+                            </seq>
+                        </and>
+                        <task lane="" pool="ISP">Debt recovery started</task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

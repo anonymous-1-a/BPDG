@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="ERP System" pool="Seller">Purchase order received</task>
+        <task lane="ERP System" pool="Seller">Check stock availability</task>
+        <xor condition="|product not in stock|product in stock|" description="" type="">
+            <seq>
+                <task lane="Warehouse &amp; Distribution worker" pool="Seller">Retrieve product from warehouse</task>
+            </seq>
+            <seq>
+                <task lane="ERP System" pool="Seller">Check raw materials availability</task>
+                <or condition="|raw materials provided by Supplier 2|raw materials provided by Supplier 1|">
+                    <seq>
+                        <task lane="Warehouse &amp; Distribution worker" pool="Seller">Request raw materials from Supplier 2
+                        </task>
+                        <task lane="Warehouse &amp; Distribution worker" pool="Seller">Obtain raw materials from Supplier 2
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="Warehouse &amp; Distribution worker" pool="Seller">Request raw materials from Supplier 1
+                        </task>
+                        <task lane="Warehouse &amp; Distribution worker" pool="Seller">Obtain raw materials from Supplier 1
+                        </task>
+                    </seq>
+                </or>
+                <task lane="Warehouse &amp; Distribution worker" pool="Seller">Manufacture product</task>
+            </seq>
+        </xor>
+        <task lane="Sales" pool="Seller">Confirm order</task>
+        <and>
+            <seq>
+                <task lane="Sales" pool="Seller">Emit invoice</task>
+                <task lane="Sales" pool="Seller">Receive payment</task>
+            </seq>
+            <seq>
+                <task lane="Warehouse &amp; Distribution worker" pool="Seller">Get shipping address</task>
+                <task lane="Warehouse &amp; Distribution worker" pool="Seller">Ship product</task>
+            </seq>
+        </and>
+        <task lane="Sales" pool="Seller">Archive order</task>
+    </seq>
+</rpst>

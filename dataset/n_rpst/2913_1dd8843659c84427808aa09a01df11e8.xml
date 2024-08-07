@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Photographer" pool="Photosynthesis Studio">Booking Assigned</task>
+        <task lane="Photographer" pool="Photosynthesis Studio">Check equipment requirement</task>
+        <xor condition="|Special equipment is not required|Special equipment is required|" description="" type="skip">
+            <seq>
+                <task lane="Equipments" pool="Photosynthesis Studio">Bring special equipments</task>
+            </seq>
+        </xor>
+        <task lane="Photographer" pool="Photosynthesis Studio">Check shooting location</task>
+        <xor condition="|in-studio session|on-location session|" description="" type="skip">
+            <seq>
+                <task lane="Photographer" pool="Photosynthesis Studio">Drive to the shooting location</task>
+            </seq>
+        </xor>
+        <task lane="Photographer" pool="Photosynthesis Studio">Shooting preparation</task>
+        <task lane="Photographer" pool="Photosynthesis Studio">Video/photo shooting</task>
+        <xor condition="|No special equipment|have special requirement|" description="" type="skip">
+            <seq>
+                <task lane="Equipments" pool="Photosynthesis Studio">Bring back special equipments</task>
+            </seq>
+        </xor>
+        <task lane="Photographer" pool="Photosynthesis Studio">Upload photo (and video)</task>
+        <task lane="Photographer" pool="Photosynthesis Studio">Clean up photos</task>
+    </seq>
+</rpst>

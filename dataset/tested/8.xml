@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">The process starts by reviewing the order</task>
+        <task lane="" pool="">The staff should check if all the requested items are available</task>
+        <task lane="" pool="">the staff has to inform customer about a potential delay and order the missing products
+        </task>
+        <task lane="" pool="">the customer should be informed about the no longer available items</task>
+        <task lane="" pool="">waiting an average of x days for the delivery</task>
+        <task lane="" pool="">the staff should check again if all products are on store</task>
+        <task lane="" pool="">the staff recollects all products and prepare a package</task>
+        <task lane="" pool="">The courier is then informed about the pre-processed package</task>
+        <task lane="" pool="">The courier company informs the client about a potential delay until there are enough human resources to process the delivery
+        </task>
+        <task lane="" pool="">the package is picked up by the designed driver</task>
+        <task lane="" pool="">A centralized service decides the best route to deliver all driver's packages</task>
+        <task lane="" pool="">she should update the system so all stakeholders are notified</task>
+    </seq>
+</rpst>

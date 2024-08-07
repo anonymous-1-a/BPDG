@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Exporter process flow" pool="smart contract">Starting contract finalization</task>
+        <task lane="Exporter process flow" pool="smart contract">Initiate contract</task>
+        <task lane="Importer process flow" pool="smart contract">Contract initiation message receive</task>
+        <loop condition="Yes" description="Further review?" exit="No" type="dowhile">
+            <seq>
+                <task lane="Importer process flow" pool="smart contract">Review contract</task>
+            </seq>
+        </loop>
+        <task lane="Importer process flow" pool="smart contract">Approve final contract</task>
+        <task lane="Importer process flow" pool="smart contract">Notify other party</task>
+        <task lane="Exporter process flow" pool="smart contract">Notification message received</task>
+        <loop condition="Fail" description="" exit="Pass" type="dowhile">
+            <seq>
+                <task lane="Exporter process flow" pool="smart contract">Review final contract</task>
+                <task lane="Exporter process flow" pool="smart contract">Conduct smart contract validation test</task>
+            </seq>
+        </loop>
+        <task lane="Exporter process flow" pool="smart contract">Sign the smart contract (private key)</task>
+        <task lane="Importer process flow" pool="smart contract">Notification for sign contract</task>
+        <task lane="Importer process flow" pool="smart contract">Sign the smart contract (private key)</task>
+        <task lane="Importer process flow" pool="smart contract">Smart contract amount frozen</task>
+        <task lane="Importer process flow" pool="smart contract">Smart contract live</task>
+        <task lane="Exporter process flow" pool="smart contract">Notification received smart contract deployed</task>
+        <task lane="Exporter process flow" pool="smart contract">Consignments shipped</task>
+        <task lane="Importer process flow" pool="smart contract">Waiting time for consignments to be received</task>
+        <task lane="Importer process flow" pool="smart contract">Consignments received</task>
+        <and>
+            <seq>
+                <task lane="Exporter process flow" pool="smart contract">Notification that consignments received</task>
+                <task lane="Exporter process flow" pool="smart contract">Preparing for smart contract execution decision
+                </task>
+            </seq>
+            <seq>
+                <loop condition="No" description="Terms met?" exit="Yes" type="dowhile">
+                    <seq>
+                        <task lane="Importer process flow" pool="smart contract">Smart contract terms reviewed</task>
+                    </seq>
+                </loop>
+                <task lane="Importer process flow" pool="smart contract">Smart contract executed</task>
+            </seq>
+        </and>
+        <task lane="Exporter process flow" pool="smart contract">Notification that smart contract executed</task>
+        <task lane="Exporter process flow" pool="smart contract">Payment received</task>
+    </seq>
+</rpst>

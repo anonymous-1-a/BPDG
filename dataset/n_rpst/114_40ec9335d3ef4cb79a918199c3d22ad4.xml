@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Parent" pool="Forsakringskassan">Start</task>
+        <task lane="Parent" pool="Forsakringskassan">Select the Child</task>
+        <task lane="Parent" pool="Forsakringskassan">Enter the transfer days</task>
+        <task lane="System" pool="Forsakringskassan">Check eligible days</task>
+        <xor condition="|No|yes|" description="if eligible days left" type="">
+            <seq>
+                <task lane="System" pool="Forsakringskassan">stop</task>
+            </seq>
+            <seq>
+                <task lane="System" pool="Forsakringskassan">Check Transferable days with level</task>
+                <xor condition="|yes||" description="Possible to transfer ?" type="">
+                    <seq>
+                        <task lane="System" pool="Forsakringskassan">Credit and Debit days</task>
+                        <task lane="System" pool="Forsakringskassan">Stop</task>
+                    </seq>
+                    <seq>
+                        <task lane="System" pool="Forsakringskassan">stop</task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

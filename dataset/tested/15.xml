@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">SO: Angebot/Auftrag receives a subsidiary order</task>
+        <and>
+            <seq>
+                <task lane="" pool="">SO: Angebot/Auftrag prepares goods</task>
+                <task lane="" pool="">SO: Angebot/Auftrag ships the goods</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">SO: Angebot/Auftrag prepares invoicing</task>
+            </seq>
+        </and>
+        <xor condition="|no|yes|" description="Is customer subsidiary?" type="">
+            <seq>
+                <task lane="" pool="">SO: Angebot/Auftrag create the invoice</task>
+            </seq>
+            <seq>
+                <xor condition="|no|yes|" description="the subsidiary relationship is not yet modeled?" type="">
+                    <seq>
+                        <task lane="" pool="">SO: Address- management adds parent company as invoicing address</task>
+                        <task lane="" pool="">SO: Angebot/Auftrag create the invoice</task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="">SO: Angebot/Auftrag create the invoice</task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+        <task lane="" pool="">SO: Angebot/Auftrag sends the invoice</task>
+    </seq>
+</rpst>

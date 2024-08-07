@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Photo editor expert" pool="Photosynth">Remaining photos examined</task>
+        <and>
+            <seq>
+                <task lane="Video editor expert" pool="Photosynth">Create video-stories</task>
+            </seq>
+            <seq>
+                <task lane="Photo editor expert" pool="Photosynth">Edit photos</task>
+            </seq>
+        </and>
+        <task lane="Photo editor expert" pool="Photosynth">Upload photos and video-stories</task>
+        <task lane="Customer representative" pool="Photosynth">Notify customer via email</task>
+        <task lane="Customer representative" pool="Photosynth">Confirm order</task>
+        <xor condition="|No additional requests|Additional requests|" description="" type="skip">
+            <seq>
+                <and>
+                    <seq>
+                        <task lane="Video editor expert" pool="Photosynth">Perform additional video editing</task>
+                    </seq>
+                    <seq>
+                        <task lane="Photo editor expert" pool="Photosynth">Perform additional photo editing</task>
+                    </seq>
+                </and>
+                <xor condition="|No additional fee|Additional fee|" description="" type="skip">
+                    <seq>
+                        <and>
+                            <seq>
+                                <task lane="Video editor expert" pool="Photosynth">Update order price</task>
+                            </seq>
+                            <seq>
+                                <task lane="Photo editor expert" pool="Photosynth">Update order price</task>
+                            </seq>
+                        </and>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+        <task lane="Customer representative" pool="Photosynth">Send invoice</task>
+        <task lane="Customer representative" pool="Photosynth">Collect payment</task>
+    </seq>
+</rpst>

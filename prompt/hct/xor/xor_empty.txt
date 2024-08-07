@@ -2,7 +2,11 @@
 structure text:
 """Programmer Remove other tasks instead of additional feature""" xor """Programmer Add additional feature in new sprint""" xor """Don't add feature"""
 process text:
-The programmer must choose one of the following three options, and only one:
-    1. Remove other tasks instead of adding the additional feature.
-    2. Add the additional feature in a new sprint.
-    3. Do not add the feature.
+The programmer must choose one of the following options, and only one:
+    (1) remove other tasks instead of adding the additional feature.
+    (2) add the additional feature in a new sprint.
+    (3) do not add the feature.
+structure text:
+"""The credit assessor of the Bank of Golden Merchants (BGM) values of the loan. Then, the risk assessment staff of BGM checks that the loan submission is complete.""" xor """The credit assessor of the Bank of Golden Merchants (BGM) reject the loan"""
+process text:
+One of the following branches must be selected for execution: (1) The lender of the Bank of Golden Merchants (BGM) assesses the value of the loan. Then, the risk assessment staff of BGM checks that the loan submission is complete. (2) The credit assessor of BGM reject the loan.

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">locate the Vendor into the SAP system</task>
+        <xor condition="|already in the system|not possible to find it|" description="" type="">
+            <seq>
+                <task lane="" pool="">SAP number is added to the invoice</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">fill new Vendor Master Record form</task>
+                <task lane="" pool="">request is attached to the invoice</task>
+                <task lane="" pool="">put the invoice in an internal outbox</task>
+                <xor condition="|non-urgent|Invoice is urgent|" description="" type="">
+                    <seq>
+                        <task lane="" pool="">1-5 working days time to finish</task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="">24 hr window to finish</task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+        <task lane="" pool="">invoices are then entered in the SAP system</task>
+    </seq>
+</rpst>

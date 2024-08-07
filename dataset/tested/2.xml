@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">CVS must check the number of resolution retries conducted</task>
+        <xor condition="|yes|no|" description="Is the number of retries greater than the specified number?" type="">
+            <seq>
+                <task lane="" pool="">the bag must be returned to the production area for disassemble</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">CVS must try to contact the customer by phone and remind to pick up the bag
+                </task>
+                <xor condition="|no|yes|" description="Does successfully contact the customer?" type="">
+                    <seq>
+                        <task lane="" pool="">this number must be increased</task>
+                    </seq>
+                    <seq>
+                        <xor condition="|yes|no|" description="Does the customer withdraw the order?" type="">
+                            <seq>
+                                <task lane="" pool="">the bag must be returned to the production area for disassemble
+                                </task>
+                            </seq>
+                            <seq>
+                                <xor condition="|no|yes|" description="Does the customer promises to pick up the bag?"
+                                     type="skip">
+                                    <seq>
+                                        <task lane="" pool="">CVS must increase the retry count on the bag label</task>
+                                    </seq>
+                                </xor>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

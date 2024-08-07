@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">a reimbursement request is received</task>
+        <task lane="" pool="">The reimbursement process within the ERICS company is started</task>
+        <task lane="" pool="">a reimbursement contact is created</task>
+        <task lane="" pool="">a beneficiary is chosen</task>
+        <task lane="" pool="">a refund period is contract duration is determined</task>
+        <xor condition="|no|yes|"
+             description="Once completed, it is necessary to check to see if the customer is a 'Verband' part or only has normal subsidiary?"
+             type="">
+            <seq>
+                <task lane="" pool="">customers are selected manually</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">the customer group association is selected</task>
+            </seq>
+        </xor>
+        <task lane="" pool="">a threshold is set</task>
+        <task lane="" pool="">the refund period has ended</task>
+        <and>
+            <seq>
+                <task lane="" pool="">a credit note is printed and sent to the customer</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">a reimbursement is calculated and paid to the customer</task>
+            </seq>
+        </and>
+        <task lane="" pool="">the process ends</task>
+    </seq>
+</rpst>

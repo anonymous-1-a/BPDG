@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="Engineering Department">Order received from sales dept</task>
+        <task lane="" pool="Engineering Department">Review the order</task>
+        <rigid>
+            <vertices>
+                <gateway description="Can it be built?" id="6" type="XOR"/>
+                <gateway description="Did the customer accept proposal?" id="13" type="XOR"/>
+                <task id="11" lane="" pool="Engineering Department">Send customer altered proposal</task>
+                <event id="20" lane="" pool="Engineering Department"/>
+                <task id="9" lane="" pool="Engineering Department">Send copy of order to warehouse</task>
+                <gateway description="" id="18" type="XOR"/>
+                <event id="17" lane="" pool="Engineering Department">Order processed</event>
+                <event id="16" lane="" pool="Engineering Department">Order cancelled</event>
+            </vertices>
+            <edges>
+                <edge source_id="18" target_id="9"/>
+                <edge source_id="13" target_id="16">No</edge>
+                <edge source_id="6" target_id="18">Yes</edge>
+                <edge source_id="16" target_id="20"/>
+                <edge source_id="13" target_id="18">Yes</edge>
+                <edge source_id="17" target_id="20"/>
+                <edge source_id="9" target_id="17"/>
+                <edge source_id="6" target_id="11">No</edge>
+                <edge source_id="11" target_id="13"/>
+            </edges>
+        </rigid>
+    </seq>
+</rpst>

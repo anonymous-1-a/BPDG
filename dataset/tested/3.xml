@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">an employee files an expense report</task>
+        <task lane="" pool="">the process is started</task>
+        <task lane="" pool="">the expense report is received</task>
+        <task lane="" pool="">A check is performed to make sure the employee has an account</task>
+        <xor condition="|this check does not take place within 28 days|this check take place within 28 days|" description="" type="">
+            <seq>
+                <task lane="" pool="">the process is stopped and the employee is sent a “resubmit” email</task>
+            </seq>
+            <seq>
+                <xor condition="|has an account|does not have an account|" description="" type="skip">
+                    <seq>
+                        <task lane="" pool="">an account is created</task>
+                    </seq>
+                </xor>
+                <task lane="" pool="">report is reviewed</task>
+                <task lane="" pool="">A check is performed to see if the amount of the expense exceeds 200</task>
+                <xor condition="|no|yes|" description="Does the expense exceed 200?" type="">
+                    <seq>
+                        <task lane="" pool="">the employee is reimbursed through a deposit directly to the employee’s bank account and the process is ended
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="">a supervisor is asked for approval</task>
+                        <task lane="" pool="">Three things can happen after this</task>
+                        <xor condition="|it takes the supervisor more than 7 days to respond|the supervisor rejects within 7 days|the supervisor approves within 7 days|"
+                             description="" type="">
+                            <seq>
+                                <task lane="" pool="">an email is sent to the employee informing him/her that the approval is in progress and the part of the processes after a supervisor is asked for approval is repeated
+                                </task>
+                            </seq>
+                            <seq>
+                                <task lane="" pool="">the employee receives a notification through email that the request has been rejected
+                                </task>
+                            </seq>
+                            <seq>
+                                <task lane="" pool="">the deposit of the reimbursement directly to the employee’s bank account
+                                </task>
+                                <task lane="" pool="">the process is ended</task>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">choosing to pay with credit card</task>
+        <loop condition="incorrect" description="" exit="correct" type="dowhile">
+            <seq>
+                <task lane="" pool="">put credit card details</task>
+                <task lane="" pool="">billing address is checked</task>
+            </seq>
+        </loop>
+        <task lane="" pool="">user click continue button</task>
+        <task lane="" pool="">Credit Card Authority verify Credit Card</task>
+        <xor condition="|invalidated|validated|" description="" type="">
+            <seq>
+                <task lane="" pool="">addition is cancelled</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">add credit card</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

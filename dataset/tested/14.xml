@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">Mail Centre office of SSP receives an invoice</task>
+        <task lane="" pool="">categorizes the invoice by staff member</task>
+        <task lane="" pool="">forward invoice to the Administration Department</task>
+        <task lane="" pool="">Administration Department processes the Invoice</task>
+        <task lane="" pool="">Administration Department puts all the invoices into a collection box</task>
+        <task lane="" pool="">Data Entry office takes the invoices</task>
+        <task lane="" pool="">Data Entry office enters all data in the SAP system</task>
+        <task lane="" pool="">Validation office validat invoices</task>
+        <task lane="" pool="">Payment office executes the payment of every validate invoice</task>
+        <task lane="" pool="">Registry office archive all invoice</task>
+    </seq>
+</rpst>

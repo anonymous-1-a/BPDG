@@ -2,8 +2,9 @@
 structure text:
 if Application Admitted, """The admissions office will first notify admitted students of their acceptance via email. Subsequently, they will send physical admitting notifications to each student by post as well.""" if Application Rejected, """Admission office Rejecting notifications are sent by e-mail to students"""
 process text:
-If the application is admitted, the admissions office will first notify the admitted students of their acceptance via email. Subsequently, they will also send physical admitting notifications to each student by post. If the application is rejected, the admissions office will send rejecting notifications to the students by email.
+If the application is accepted, the admissions office will first notify the admitted students of their acceptance via email. Subsequently, they will also send physical admitting notifications to each student by post.
+If the application is rejected, the admissions office will send rejecting notifications to the students by email.
 structure text:
 System open? if yes, """If the system finds a suitable fit, it selects the room and time slot. If the system does not find an appropriate fit, it will check later.""" if no, """Manual Selection"""
 process text:
-If the system is operational, it will first attempt to find a suitable room and time slot. If a proper fit is identified, the system will automatically make the selection. However, if the system cannot locate an appropriate option, it will revisit its availability at a later time. In the event that the system is not currently active, the selection process will need to be handled manually.
+If the system is open, it will find a suitable fit. If the system finds a suitable fit, it selects the room and time slot. In the event that the system does not find one, it will check later. If the system is not open, select the room and time slot manually.

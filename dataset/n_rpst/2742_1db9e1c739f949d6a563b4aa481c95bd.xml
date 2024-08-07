@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Distribution manager" pool="AskmeAnything">Start</task>
+        <task lane="Distribution manager" pool="AskmeAnything">Set up weekly stand-up meeting</task>
+        <task lane="Distribution manager" pool="AskmeAnything">Prioritization of tasks with Post-Its</task>
+        <task lane="Distribution manager" pool="AskmeAnything">Place on Kanban Board</task>
+        <task lane="Employees" pool="AskmeAnything">Voluntary picking tasks</task>
+        <xor condition="|Yes|No|" description="All tasks distributed?" type="skip">
+            <seq>
+                <task lane="Distribution manager" pool="AskmeAnything">Task distribution randomly</task>
+            </seq>
+        </xor>
+        <task lane="Employees" pool="AskmeAnything">Record in trello</task>
+    </seq>
+</rpst>

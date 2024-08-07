@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">an informational meeting among the web design team</task>
+        <xor condition="|not successful|successful|" description="" type="skip">
+            <seq>
+                <task lane="" pool="">creating a storyboard</task>
+                <and>
+                    <seq>
+                        <task lane="" pool="">design and development of the website</task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="">prepare an initial draft of the content</task>
+                        <xor condition="|not need|a review of the draft is needed|" description="" type="skip">
+                            <seq>
+                                <task lane="" pool="">marketing team conduct review</task>
+                            </seq>
+                        </xor>
+                        <task lane="" pool="">the web design team creates the final version of the content</task>
+                    </seq>
+                </and>
+                <loop condition="not approval" description="" exit="approval" type="dowhile">
+                    <seq>
+                        <task lane="" pool="">the website will be built and reviewed</task>
+                    </seq>
+                </loop>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

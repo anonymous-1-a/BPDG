@@ -1,14 +1,15 @@
 from utils import load_xml, load_txt, save_as_txt
 from call_llm import prompt_llm
+from tqdm import tqdm
 import time
 import xml.etree.ElementTree as ET
 import os
-import metric
+# import metric
 
 
 def rigid(node, swds, instruction, output_indicator):
     rigid_ = load_txt('prompt/hct/rigid/rigid.txt')
-    p = '{}{}{}# Input\n<?xml version="1.0" encoding="UTF-8"?>\n<rpst>\n\t<seq>\n\t\t{}</seq>\n</rpst>'.format(instruction, rigid_,output_indicator, ET.tostring(node, encoding='utf-8', method='xml').decode('utf-8')[:-4])
+    p = '{}{}{}# Input\n<?xml version="1.0" encoding="UTF-8"?>\n<rpst>\n\t<seq>\n\t\t{}\n\t</seq>\n</rpst>'.format(instruction, rigid_,output_indicator, ET.tostring(node, encoding='utf-8', method='xml').decode('utf-8').strip())
     # p = '{}{}# Input\n{}'.format(instruction, output_indicator, ET.tostring(node, encoding='utf-8', method='xml').decode('utf-8'))
     return p
 
@@ -62,13 +63,13 @@ def seq(node, swds, instruction, output_indicator):
     if flag:
         sequence_exclusive_parallel_end = load_txt('prompt/hct/seq/sequence_exclusive_parallel_end.txt')
         p = '{}{}{}# Input\n'.format(instruction, sequence_exclusive_parallel_end, output_indicator)
-        for swd in swds:
-            if swd[1] == 'xor':
-                p += '"""{}""" exclusive choice end, next '.format(swd[0])
-            elif swd[1] == 'and':
-                p += '"""{}""" parallel end, next '.format(swd[0])
+        for i in range(len(swds)):
+            if swds[i][1] == 'xor' and i != len(swds) - 1:
+                p += '"""{}""" exclusive choice end, next '.format(swds[i][0])
+            elif swds[i][1] == 'and' and i != len(swds) - 1:
+                p += '"""{}""" parallel end, next '.format(swds[i][0])
             else:
-                p += '"""{}""" next '.format(swd[0])
+                p += '"""{}""" next '.format(swds[i][0])
         p = p[:-6]
     else:
         sequence = load_txt('prompt/hct/seq/sequence.txt')
@@ -83,15 +84,15 @@ def and_(node, swds, instruction, output_indicator):
     and_ = load_txt('prompt/hct/and/and.txt')
     p = '{}{}{}# Input\n'.format(instruction, and_, output_indicator)
     for swd in swds:
-        p += '"""{}""" and '.format(swd[0])
-    p = p[:-5]
+        p += '"""{}""" meanwhile '.format(swd[0])
+    p = p[:-11]
     return p
 
 
 def loop(node, swds, instruction, output_indicator):
     p = ''
     if node.attrib['type'] == 'while':
-        while_ = load_txt('prompt/hct/loop/dowhile.txt')
+        while_ = load_txt('prompt/hct/loop/while.txt')
         description = node.attrib['description']
         condition = node.attrib['condition']
         exit_ = node.attrib['exit']
@@ -110,8 +111,7 @@ def loop(node, swds, instruction, output_indicator):
             if description == '':
                 p += '"""{}""" if {}, """{}""" loop, if {}, exit.'.format(swds[0][0], condition, swds[1][0], exit_)
             else:
-                p += '"""{}""" {} if {}, """{}""" loop. if {}, exit.'.format(swds[0][0], description, condition,
-                                                                             swds[1][0], exit_)
+                p += '"""{}""" {} if {}, """{}""" loop. if {}, exit.'.format(swds[0][0], description, condition, swds[1][0], exit_)
         else:
             dowhile = load_txt('prompt/hct/loop/dowhile.txt')
             p = '{}{}{}# Input\n'.format(instruction, dowhile, output_indicator)
@@ -148,7 +148,7 @@ def or_(node, swds, instruction, output_indicator):
 def gen_swd(node, sub_swds):
     model = 'gpt-3.5-turbo'
     pre = {'role': 'system', 'content': 'You are an assistant who follows instructions.'}
-    temperature = 0
+    temperature = 0.6
     instruction_path = 'prompt/hct/instruction.txt'
     output_indicator_path = 'prompt/hct/output_indicator.txt'
     i = load_txt(instruction_path)
@@ -187,11 +187,11 @@ def gen_swd(node, sub_swds):
 def hct(root):
     if root.tag == 'task':
         if root.attrib['lane'] == '' and root.attrib['pool'] != '' and root.attrib['pool'] != '?':
-            return '{} {}'.format(root.attrib['pool'], root.text)
+            return '{} {}'.format(root.attrib['pool'], root.text.strip())
         elif root.attrib['lane'] != '' and root.attrib['pool'] != '' and root.attrib['pool'] != '?':
-            return '{} of {} {}'.format(root.attrib['lane'], root.attrib['pool'], root.text)
+            return '{} of {} {}'.format(root.attrib['lane'], root.attrib['pool'], root.text.strip())
         elif root.attrib['lane'] == '' and (root.attrib['pool'] == '' or root.attrib['pool'] == '?'):
-            return '{}'.format(root.text)
+            return '{}'.format(root.text.strip())
     elif root.tag == 'rigid':
         return gen_swd(root, '')
     else:
@@ -209,34 +209,41 @@ def print_tree(root):
 
 
 def main_process():
-    rpst_dir = 'dataset/n_rpst'
-    ground_truth_dir = 'dataset/n_swd'
-    save_dir = 'result/HCT'
+    rpst_dir = 'dataset/tested'
+    n_rpst_dir = 'dataset/n_rpst'
+    # ground_truth_dir = 'dataset/n_swd'
+    save_dir = 'result/HCT06'
 
     # test
-    files = ['dataset/n_rpst/3217_1e1304b008124ea5a8c60ba8c3c09e9b.xml',
-             'dataset/n_rpst/42_40debacaaa344ff4adb39cdfdb748f57.xml',
-             'dataset/n_rpst/250_4103bf5e18db4e89abb442d9b279f005.xml',
-             'dataset/tested/848_1c49ec4b4ea8468e8b553c95564f8b4c --created--.xml','dataset/tested/911_1c55cc7cfebb47febb38d36f6423adeb --created--.xml','dataset/tested/2680_1daef3f1695441929acacc6eb4e278ad --created--.xml','dataset/tested/2699_1db17a9f65344bc99afc3ef3e5df2689 --created--.xml',
-             'dataset/tested/Refined Fulfil Prescription --created--.xml']
-    for f in files:
-        rpst = load_xml(f)
-        for root in rpst:
-            swd = hct(root)
-            print()
+    # files = ['dataset/n_rpst/3217_1e1304b008124ea5a8c60ba8c3c09e9b.xml',
+    #          'dataset/n_rpst/42_40debacaaa344ff4adb39cdfdb748f57.xml',
+    #          'dataset/n_rpst/250_4103bf5e18db4e89abb442d9b279f005.xml',
+    #          'dataset/tested/848_1c49ec4b4ea8468e8b553c95564f8b4c --created--.xml','dataset/tested/911_1c55cc7cfebb47febb38d36f6423adeb --created--.xml','dataset/tested/2680_1daef3f1695441929acacc6eb4e278ad --created--.xml','dataset/tested/2699_1db17a9f65344bc99afc3ef3e5df2689 --created--.xml',
+    #          'dataset/tested/Refined Fulfil Prescription --created--.xml']
+    # files = ['dataset/ppp/Arrange car --created--.xml']
+    # for f in files:
+    #     rpst = load_xml(f)
+    #     for root in rpst:
+    #         swd = hct(root)
+    #         print()
 
     i = 0
     file_list = os.listdir(rpst_dir)
-    for file in range(len(file_list)):
-        rpst = load_xml(os.path.join(rpst_dir, file_list[file + i]))
-        print('{}'.format(file_list[file + i][:-4]), end=',')
+    file_list.extend(os.listdir(n_rpst_dir))
+    for file in tqdm(range(len(file_list))):
+        if os.path.exists(os.path.join(n_rpst_dir, file_list[file + i])):
+            rpst = load_xml(os.path.join(n_rpst_dir, file_list[file + i]))
+        else:
+            rpst = load_xml(os.path.join(rpst_dir, file_list[file + i]))
+        # print('{}'.format(file_list[file + i][:-4]), end=',')
+        # print('{}'.format(file_list[file + i][:-4]))
         # ground_truth = load_txt(os.path.join(ground_truth_dir, file[:-3] + '.txt'))
         for root in rpst:
             swd = hct(root)
             # grammar correctness
-            gc = metric.grammar_correctness(swd)
+            # gc = metric.grammar_correctness(swd)
             # readability
-            read = metric.readability_score(swd)
+            # read = metric.readability_score(swd)
             # meteor
             # mt = metric.meteor(swd, ground_truth)
             # rouge
@@ -247,9 +254,25 @@ def main_process():
             # sbert = metric.s_bert(swd, ground_truth)
             # save_as_txt(os.path.join(save_dir, file.replace('xml', 'txt')), swd)
             # print('rpst: {file}, grammar correctness: {gc}, readability: {read}, meteor: {mt}, rouge: {rg}, bert score: {bs}, sentence bert: {sbert}'.format(file=file, gc=gc, read=read, mt=mt, rg=rg, bs=bs, sbert=sbert))
-            print('{},{}'.format(gc,read))
+            # print('{},{}'.format(gc,read))
             save_as_txt(os.path.join(save_dir, file_list[file + i].replace('xml', 'txt')), swd)
+
+def global_feature_optim():
+    d = 'result/HCT'
+    save_d = 'result/HCT__'
+    fs = os.listdir(d)
+    model = 'gpt-3.5-turbo'
+    pre = {'role': 'system', 'content': 'You are an assistant who follows instructions.'}
+    temperature = 0.6
+    for f in tqdm(fs):
+        txt = load_txt(os.path.join(d, f))
+        # res = prompt_llm(model, pre, 'Eliminate redundant information without changing its original meaning to conform to human reading habits.\n{}'.format(txt), temperature)
+        res = prompt_llm(model, pre, 'Correct grammatical errors with minimal changes to the text.\n{}'.format(txt), temperature)
+        save_as_txt(os.path.join(save_d, f), res)
+
+
 
 
 if __name__ == '__main__':
     main_process()
+    # global_feature_optim()

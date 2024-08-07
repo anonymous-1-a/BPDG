@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Purchasing agent" pool="Firm">create request for quotation</task>
+        <task lane="Purchasing agent" pool="Firm">price comparison</task>
+        <task lane="Purchasing agent" pool="Firm">Create contract</task>
+        <task lane="Purchasing agent" pool="Firm">Create purchase requisition and assign requisition to source</task>
+        <task lane="Purchasing agent" pool="Firm">Create Purchase order</task>
+        <task lane="Warehouse clerk" pool="Firm">Process Inbound delivery</task>
+        <task lane="Warehouse clerk" pool="Firm">Post Goods Receipt</task>
+        <task lane="Account payable clerk" pool="Firm">Invoice Verification</task>
+        <task lane="Account payeble manager" pool="Firm">Process Blocked Invoice</task>
+        <task lane="Account payable clerk" pool="Firm">Payment to Vendor</task>
+    </seq>
+</rpst>

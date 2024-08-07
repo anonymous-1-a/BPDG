@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Referee" pool="Hospital">need of doctor evaluation</task>
+        <and>
+            <seq>
+                <task lane="Managing director" pool="Hospital">Ask external expert to review</task>
+                <loop condition="NO" description="Answer on time ?" exit="YES" type="while">
+                    <seq>
+                        <task lane="Managing director" pool="Hospital">Ask another expert</task>
+                    </seq>
+                </loop>
+                <task lane="Managing director" pool="Hospital">Receive expertise</task>
+                <task lane="Managing director" pool="Hospital">Forward expertise to referee</task>
+            </seq>
+            <seq>
+                <task lane="Referee" pool="Hospital">Interview patients</task>
+            </seq>
+        </and>
+        <task lane="Referee" pool="Hospital">Receive expertise</task>
+        <and>
+            <seq>
+                <task lane="Referee" pool="Hospital">File the results</task>
+            </seq>
+            <seq>
+                <task lane="Managing director" pool="Hospital">File check to pay expert</task>
+            </seq>
+        </and>
+    </seq>
+</rpst>

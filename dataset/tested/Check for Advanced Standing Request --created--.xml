@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Professional staff" pool="University of 's-Hertogenbosch">Check for advanced standing request</task>
+        <xor condition="|No request attached to enrollment|Request attached to enrollment|" description="" type="">
+            <seq>
+                <task lane="Professional staff" pool="University of 's-Hertogenbosch">Advance standing completed</task>
+            </seq>
+            <seq>
+                <task lane="Professional staff" pool="University of 's-Hertogenbosch">Identify correlating unit coordinator
+                </task>
+                <task lane="Professional staff" pool="University of 's-Hertogenbosch">Send advance standing request document to related coordinator
+                </task>
+                <task lane="Academic staff" pool="University of 's-Hertogenbosch">Assess student request</task>
+                <rigid>
+                    <vertices>
+                        <gateway description="" id="33" type="XOR"/>
+                        <event id="32" lane="Academic staff" pool="University of 's-Hertogenbosch">Advanced standing request denied
+                        </event>
+                        <event id="28" lane="Academic staff" pool="University of 's-Hertogenbosch">Response within 10 days
+                        </event>
+                        <gateway description="" id="30" type="XOR"/>
+                        <task id="26" lane="Academic staff" pool="University of 's-Hertogenbosch">Automaticaly deny advance standing request
+                        </task>
+                        <gateway description="" id="23" type="XOR"/>
+                        <task id="21" lane="Academic staff" pool="University of 's-Hertogenbosch">Determine outcome based upon student information
+                        </task>
+                        <gateway description="" id="18" type="XOR"/>
+                        <event id="46" lane="Academic staff" pool="University of 's-Hertogenbosch"/>
+                        <event id="44" lane="Academic staff" pool="University of 's-Hertogenbosch"/>
+                        <event id="41" lane="Academic staff" pool="University of 's-Hertogenbosch"/>
+                        <event id="40" lane="Academic staff" pool="University of 's-Hertogenbosch">Advanced standing request approved
+                        </event>
+                        <task id="36" lane="Academic staff" pool="University of 's-Hertogenbosch">Update the student progress information system
+                        </task>
+                    </vertices>
+                    <edges>
+                        <edge source_id="26" target_id="32"/>
+                        <edge source_id="32" target_id="46"/>
+                        <edge source_id="36" target_id="40"/>
+                        <edge source_id="44" target_id="23"/>
+                        <edge source_id="33" target_id="36">Request Approved</edge>
+                        <edge source_id="18" target_id="41">More information required</edge>
+                        <edge source_id="30" target_id="21"/>
+                        <edge source_id="21" target_id="33"/>
+                        <edge source_id="23" target_id="26">No response</edge>
+                        <edge source_id="28" target_id="44"/>
+                        <edge source_id="18" target_id="30">Enough information provided</edge>
+                        <edge source_id="40" target_id="46"/>
+                        <edge source_id="33" target_id="32"/>
+                        <edge source_id="23" target_id="30">Responded within time period</edge>
+                        <edge source_id="41" target_id="28"/>
+                    </edges>
+                </rigid>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

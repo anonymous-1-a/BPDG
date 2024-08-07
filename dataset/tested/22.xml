@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">management check employee performance</task>
+        <xor condition="|performance exceeds 75%|performance less than 20%|performance is greater than 20% but less than 50%|"
+             description="" type="">
+            <seq>
+                <task lane="" pool="">management suggests the employee for reward</task>
+                <task lane="" pool="">financial reward is calculated and paid by the finance department</task>
+                <task lane="" pool="">management announce the rewarded employee as employee of the month</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">management suggest employee's dismissal to the human resources department (HR)
+                </task>
+                <task lane="" pool="">HR dismisses the employee</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">management suggest training</task>
+                <task lane="" pool="">HR provide training</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

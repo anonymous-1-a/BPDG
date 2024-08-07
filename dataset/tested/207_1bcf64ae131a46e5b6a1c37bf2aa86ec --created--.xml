@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="teaching assistant">Issues received</task>
+        <task lane="" pool="teaching assistant">prepare contract</task>
+        <task lane="" pool="teaching assistant">assign a supervisor</task>
+        <task lane="" pool="teaching assistant">list all main tasks</task>
+        <task lane="" pool="teaching assistant">set label for Student Assistant</task>
+    </seq>
+</rpst>

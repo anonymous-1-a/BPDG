@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Administrator" pool="ACME Manufacturing">Start</task>
+        <task lane="Administrator" pool="ACME Manufacturing">Initiates engineering change request in (PLM) system (30 min)
+        </task>
+        <rigid>
+            <vertices>
+                <event id="50" lane="Administrator" pool="ACME Manufacturing">Notify Engineer</event>
+                <event id="39" lane="Manager" pool="ACME Manufacturing">No Change</event>
+                <gateway description="Minor Approved?" id="36" type="XOR"/>
+                <task id="34" lane="Manager" pool="ACME Manufacturing">Manager Reviews Change (30 min)</task>
+                <event id="32" lane="Manager" pool="ACME Manufacturing">Notify Draftsman of approval</event>
+                <event id="31" lane="Manager" pool="ACME Manufacturing">No Change</event>
+                <event id="61" lane="Manager" pool="ACME Manufacturing"/>
+                <task id="19" lane="Engineer" pool="ACME Manufacturing">Initiate approval process in PLM (1 Hr)</task>
+                <event id="17" lane="Engineer" pool="ACME Manufacturing"/>
+                <gateway description="Change Type?" id="47" type="XOR"/>
+                <task id="15" lane="Engineer" pool="ACME Manufacturing">Analyze the change and make recommendations (8 Hr)
+                </task>
+                <event id="12" lane="Draftsman" pool="ACME Manufacturing">PLM Alerts Engineers and Manager</event>
+                <task id="10" lane="Draftsman" pool="ACME Manufacturing">Initiate approval process in PLM (1 Hr)</task>
+                <event id="40" lane="Manager" pool="ACME Manufacturing">Notify Administrator of approval</event>
+                <event id="8" lane="Draftsman" pool="ACME Manufacturing"/>
+                <gateway description="Major Approved?" id="28" type="XOR"/>
+                <event id="59" lane="Administrator" pool="ACME Manufacturing"/>
+                <task id="6" lane="Draftsman" pool="ACME Manufacturing">Updates changes (8 Hr)</task>
+                <event id="58" lane="Administrator" pool="ACME Manufacturing">Change complete</event>
+                <task id="26" lane="Manager" pool="ACME Manufacturing">Reviews major change (1 Hr)</task>
+                <event id="4" lane="Draftsman" pool="ACME Manufacturing"/>
+                <task id="56" lane="Administrator" pool="ACME Manufacturing">Checks changes into PLM (1.5 Hr)</task>
+                <event id="24" lane="Manager" pool="ACME Manufacturing"/>
+                <task id="2" lane="Draftsman" pool="ACME Manufacturing">Makes Changes (2 Hr)</task>
+                <gateway description="" id="54" type="XOR"/>
+                <event id="52" lane="Administrator" pool="ACME Manufacturing">Notify Draftsman</event>
+                <event id="21" lane="Engineer" pool="ACME Manufacturing">PLM Alerts Manager</event>
+            </vertices>
+            <edges>
+                <edge source_id="6" target_id="54"/>
+                <edge source_id="4" target_id="2"/>
+                <edge source_id="39" target_id="61"/>
+                <edge source_id="28" target_id="32">Yes</edge>
+                <edge source_id="40" target_id="59"/>
+                <edge source_id="21" target_id="24"/>
+                <edge source_id="17" target_id="15"/>
+                <edge source_id="36" target_id="39">No</edge>
+                <edge source_id="10" target_id="12"/>
+                <edge source_id="19" target_id="21"/>
+                <edge source_id="58" target_id="61"/>
+                <edge source_id="28" target_id="31">No</edge>
+                <edge source_id="50" target_id="17"/>
+                <edge source_id="8" target_id="6"/>
+                <edge source_id="15" target_id="19"/>
+                <edge source_id="52" target_id="4"/>
+                <edge source_id="36" target_id="40">Yes</edge>
+                <edge source_id="34" target_id="36"/>
+                <edge source_id="2" target_id="10"/>
+                <edge source_id="24" target_id="26"/>
+                <edge source_id="32" target_id="8"/>
+                <edge source_id="59" target_id="54"/>
+                <edge source_id="31" target_id="61"/>
+                <edge source_id="56" target_id="58"/>
+                <edge source_id="54" target_id="56"/>
+                <edge source_id="12" target_id="34"/>
+                <edge source_id="47" target_id="50">Major</edge>
+                <edge source_id="47" target_id="52">Minor</edge>
+                <edge source_id="26" target_id="28"/>
+            </edges>
+        </rigid>
+    </seq>
+</rpst>

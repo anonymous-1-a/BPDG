@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Account manager" pool="company">Receive request</task>
+        <task lane="Account manager" pool="company">Try to solve problem</task>
+        <xor condition="|yes|no|" description="possible ?" type="skip">
+            <seq>
+                <task lane="1. Level support agent" pool="company">Try to solve problem</task>
+                <xor condition="|yes|no|" description="possible ?" type="skip">
+                    <seq>
+                        <task lane="2. Level support agent" pool="company">Try to solve problem</task>
+                        <task lane="2. Level support agent" pool="company">figure out if customer can solve on his own
+                        </task>
+                        <xor condition="|yes|no|" description="possible ?" type="skip">
+                            <seq>
+                                <task lane="software developer" pool="company">Try to solve problem</task>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+        <task lane="Account manager" pool="company">explain solution</task>
+    </seq>
+</rpst>

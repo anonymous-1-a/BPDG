@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="CityPal">Enter webpage</task>
+        <task lane="" pool="CityPal">Sign into account</task>
+        <xor condition="|Tourist User|Student User|" description="" type="">
+            <seq>
+                <task lane="" pool="CityPal">Explore landmarks</task>
+                <task lane="" pool="CityPal">Select a landmark to explore</task>
+                <task lane="" pool="CityPal">Choose option for travel</task>
+            </seq>
+            <seq>
+                <task lane="" pool="CityPal">View libraries in area</task>
+                <task lane="" pool="CityPal">Select desired library</task>
+                <task lane="" pool="CityPal">Choose directions with shortest route</task>
+            </seq>
+        </xor>
+        <task lane="" pool="CityPal">Provide rating and receive rewards</task>
+        <task lane="" pool="CityPal">Log out of account</task>
+    </seq>
+</rpst>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="Emergency staff">Emergency normal flow starts</task>
+        <task lane="" pool="Emergency staff">Examine patient and the information</task>
+        <xor condition="|no further details gathered|further details gathered|" description="" type="skip">
+            <seq>
+                <task lane="" pool="Emergency staff">Obtain further details</task>
+            </seq>
+        </xor>
+        <task lane="" pool="Emergency staff">Decide further treatment</task>
+        <and>
+            <seq>
+                <task lane="" pool="Emergency staff">Prescribe simple condition</task>
+            </seq>
+            <seq>
+                <and>
+                    <seq>
+                        <task lane="" pool="Emergency staff">Direct to immunisation/investigations</task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="Emergency staff">Direct to surgery</task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="Emergency staff">Direct to further consultation</task>
+                    </seq>
+                </and>
+                <task lane="" pool="Emergency staff">Prescribe complex condition</task>
+            </seq>
+        </and>
+        <task lane="" pool="Emergency staff">Admit to the ward</task>
+    </seq>
+</rpst>

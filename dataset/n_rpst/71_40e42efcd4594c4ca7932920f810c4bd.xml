@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Pharmacist" pool="Pharmacy">Prescription received</task>
+        <task lane="Pharmacist" pool="Pharmacy">Verify customer and script</task>
+        <xor condition="|No|Yes|" description="Verified?" type="">
+            <seq>
+                <task lane="Pharmacist" pool="Pharmacy">Unfilled script</task>
+            </seq>
+            <seq>
+                <xor condition="|No|Yes|" description="Barcoded script?" type="">
+                    <seq>
+                        <and>
+                            <seq>
+                                <task lane="Pharmacist" pool="Pharmacy">Add patient, doctor, script details</task>
+                            </seq>
+                            <seq>
+                                <task lane="Jane Doe Software" pool="Pharmacy">Add patient, doctor, and script details
+                                </task>
+                            </seq>
+                        </and>
+                    </seq>
+                    <seq>
+                        <task lane="Pharmacist" pool="Pharmacy">Scan barcode script</task>
+                        <task lane="Jane Doe Software" pool="Pharmacy">Create record and populate all fields</task>
+                        <task lane="Pharmacist" pool="Pharmacy">Double check all patient, doctor, script details</task>
+                        <xor condition="|No|Yes|" description="Errors?" type="skip">
+                            <seq>
+                                <and>
+                                    <seq>
+                                        <task lane="Pharmacist" pool="Pharmacy">Correct errors</task>
+                                    </seq>
+                                    <seq>
+                                        <task lane="Jane Doe Software" pool="Pharmacy">Update errors in system</task>
+                                    </seq>
+                                </and>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+                <xor condition="|Yes|No|" description="Drug out of stock?" type="">
+                    <seq>
+                        <task lane="Pharmacist" pool="Pharmacy">Inform customer of alternatives</task>
+                        <task lane="Pharmacist" pool="Pharmacy">Prescription unfilled</task>
+                    </seq>
+                    <seq>
+                        <task lane="Jane Doe Software" pool="Pharmacy">Print labels and CMI</task>
+                        <task lane="Dispensing robot" pool="Pharmacy">Prepare prescription basket (pickup drug, check if correct, attach label, scan label, etc)
+                        </task>
+                        <task lane="Pharmacist" pool="Pharmacy">Counsel customer</task>
+                        <task lane="Pharmacist" pool="Pharmacy">Prescription filled</task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

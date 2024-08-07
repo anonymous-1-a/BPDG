@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Gerai" pool="New POS">Return needed</task>
+        <task lane="Gerai" pool="New POS">Create return request</task>
+        <rigid>
+            <vertices>
+                <task id="33" lane="HOR (Head of Retail)" pool="New POS">Review the request</task>
+                <gateway description="" id="23" type="XOR"/>
+                <task id="21" lane="Gerai" pool="New POS">Edit the request</task>
+                <gateway description="" id="48" type="XOR"/>
+                <task id="8"
+                      lane="RRM (Regional Retail Manager), RCM (Regional Category Manager), RSM Regional Sales Manager"
+                      pool="New POS">Reject the request
+                </task>
+                <task id="46" lane="Retail Operation" pool="New POS">Review request</task>
+                <gateway description="" id="43" type="XOR"/>
+                <gateway description="" id="14" type="XOR"/>
+                <gateway description="" id="4" type="XOR"/>
+                <gateway description="" id="12" type="XOR"/>
+                <task id="41" lane="HOR (Head of Retail)" pool="New POS">Reject the request</task>
+                <task id="39" lane="HOR (Head of Retail)" pool="New POS">Reject the request</task>
+                <task id="2"
+                      lane="RRM (Regional Retail Manager), RCM (Regional Category Manager), RSM Regional Sales Manager"
+                      pool="New POS">Review the request
+                </task>
+                <task id="10"
+                      lane="RRM (Regional Retail Manager), RCM (Regional Category Manager), RSM Regional Sales Manager"
+                      pool="New POS">Reject the request
+                </task>
+                <gateway description="" id="35" type="XOR"/>
+            </vertices>
+            <edges>
+                <edge source_id="2" target_id="4"/>
+                <edge source_id="35" target_id="39">Need to be edited</edge>
+                <edge source_id="35" target_id="41">Rejected</edge>
+                <edge source_id="48" target_id="23">Reject the request</edge>
+                <edge source_id="12" target_id="2"/>
+                <edge source_id="4" target_id="10">Rejected</edge>
+                <edge source_id="23" target_id="21"/>
+                <edge source_id="21" target_id="12"/>
+                <edge source_id="33" target_id="35"/>
+                <edge source_id="43" target_id="14"/>
+                <edge source_id="35" target_id="46">Approved</edge>
+                <edge source_id="4" target_id="33">Approved</edge>
+                <edge source_id="8" target_id="14"/>
+                <edge source_id="4" target_id="8">Need to be edited</edge>
+                <edge source_id="10" target_id="14"/>
+                <edge source_id="39" target_id="43"/>
+                <edge source_id="14" target_id="23"/>
+                <edge source_id="41" target_id="43"/>
+                <edge source_id="46" target_id="48"/>
+            </edges>
+        </rigid>
+        <task lane="Gerai" pool="New POS">Prepare the item to return</task>
+        <task lane="Gerai" pool="New POS">Submit return note to TNM</task>
+        <task lane="Gerai" pool="New POS">Receive Good issue note</task>
+    </seq>
+</rpst>

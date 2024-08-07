@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Sales" pool="Oil Bit Inc.">Sales Inquiry Received</task>
+        <task lane="Sales" pool="Oil Bit Inc.">Gather Requirements</task>
+        <task lane="Sales" pool="Oil Bit Inc.">Search Database</task>
+        <task lane="Sales" pool="Oil Bit Inc.">Create Sales Order</task>
+        <task lane="Sales" pool="Oil Bit Inc.">Forward Sales Order</task>
+        <task lane="Project Engineering" pool="Oil Bit Inc.">Sales Order Received</task>
+        <task lane="Project Engineering" pool="Oil Bit Inc.">Create Manufacturing Instructions</task>
+        <and>
+            <seq>
+                <task lane="Project Engineering" pool="Oil Bit Inc.">Prepare Iron Ore</task>
+            </seq>
+            <seq>
+                <task lane="Project Engineering" pool="Oil Bit Inc.">Cast Rotor Teeth</task>
+            </seq>
+        </and>
+        <task lane="Project Engineering" pool="Oil Bit Inc.">Pour Drill Bit Base</task>
+        <task lane="Project Engineering" pool="Oil Bit Inc.">Forward Materials</task>
+        <task lane="Technical Services" pool="Oil Bit Inc.">Materials Received</task>
+        <task lane="Technical Services" pool="Oil Bit Inc.">Assemble Drill Bit</task>
+        <task lane="Technical Services" pool="Oil Bit Inc.">Test Drill Bit</task>
+        <task lane="Technical Services" pool="Oil Bit Inc.">Ship Drill Bit</task>
+    </seq>
+</rpst>

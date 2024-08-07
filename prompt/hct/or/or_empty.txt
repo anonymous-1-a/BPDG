@@ -3,3 +3,7 @@ structure text:
 """Makeup Artist Draw eyelashes""" or """Makeup Artist Apply blush""" or """Makeup Artist apply lipstick"""
 process text:
 The makeup artist should draw eyelashes, apply blush, or apply lipstick.
+structured text:
+"""the admin office can send it to experience staff who should proces the non-compliance invoice, call the client and request for information""", or """First, send a postal mail requesting the information be complete, and then a reminder is sent to the client after 10 hours."""
+process text:
+The admin office can either send it to experienced staff who will handle the non-compliant invoice, call the client and request for information, or send an email requesting the information is completed and then send a reminder to the customer 10 hours later.

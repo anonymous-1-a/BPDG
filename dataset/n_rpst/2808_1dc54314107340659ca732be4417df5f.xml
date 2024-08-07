@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Sales" pool="Cityparking Groningen">Start</task>
+        <task lane="Sales" pool="Cityparking Groningen">Elk uur</task>
+        <task lane="Sales" pool="Cityparking Groningen">Check mailbox</task>
+        <task lane="Sales" pool="Cityparking Groningen">Check reservation completeness</task>
+        <xor condition="|Complete|Not complete|" description="Form complete?" type="skip">
+            <seq>
+                <task lane="Sales" pool="Cityparking Groningen">Get correct information</task>
+            </seq>
+        </xor>
+        <task lane="Sales" pool="Cityparking Groningen">Print reservation</task>
+        <task lane="Sales" pool="Cityparking Groningen">Check new customer</task>
+        <xor condition="|Not new|New|" description="New customer?" type="skip">
+            <seq>
+                <task lane="Sales" pool="Cityparking Groningen">Register new customer</task>
+            </seq>
+        </xor>
+        <task lane="Sales" pool="Cityparking Groningen">Check blacklist</task>
+        <xor condition="|Blacklisted|Not blacklisted|" description="Customer blacklisted?" type="">
+            <seq>
+                <task lane="Sales" pool="Cityparking Groningen">Inform customer</task>
+            </seq>
+            <seq>
+                <task lane="Sales" pool="Cityparking Groningen">Check free parking spots</task>
+                <xor condition="|No free spots|Free spots|" description="Free parking spot(s) left?" type="">
+                    <seq>
+                        <task lane="Sales" pool="Cityparking Groningen">Inform customers</task>
+                    </seq>
+                    <seq>
+                        <task lane="Sales" pool="Cityparking Groningen">Register reservation</task>
+                        <task lane="Sales" pool="Cityparking Groningen">12:00</task>
+                        <task lane="Sales" pool="Cityparking Groningen">Mail reservations</task>
+                        <task lane="Operations" pool="Cityparking Groningen">15:00</task>
+                        <task lane="Operations" pool="Cityparking Groningen">Check cancellations</task>
+                        <xor condition="|Not cancelled|Cancelled|" description="Reservation cancelled?" type="">
+                            <seq>
+                                <task lane="Finance" pool="Cityparking Groningen">Check cancellations</task>
+                                <task lane="Finance" pool="Cityparking Groningen">Print noncancelled reservations</task>
+                                <task lane="Finance" pool="Cityparking Groningen">Generate and mail invoice</task>
+                                <task lane="Finance" pool="Cityparking Groningen">Mail invoice</task>
+                            </seq>
+                            <seq>
+                                <task lane="Operations" pool="Cityparking Groningen">Perform cancellations</task>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

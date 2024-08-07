@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="BBS" pool="BGM">loan application finalised</task>
+        <task lane="BBS" pool="BGM">review complete submission</task>
+        <task lane="BBS" pool="BGM">add advise to customer file</task>
+        <task lane="Commercial Lender" pool="BGM">decide about loan application</task>
+        <task lane="Commercial Lender" pool="BGM">advise customer about outcome</task>
+        <xor condition="|approval|otherwise|" description="" type="event based">
+            <seq>
+                <task lane="Commercial Lender" pool="BGM">approval letter received</task>
+                <task lane="Commercial Lender" pool="BGM">collect documentation fee</task>
+                <task lane="Commercial Lender" pool="BGM">prepare legal documentation</task>
+                <task lane="BBS" pool="BGM">complete loan application</task>
+                <task lane="BBS" pool="BGM">create costumer profile</task>
+                <task lane="BBS" pool="BGM">loan offer finalised</task>
+            </seq>
+            <seq>
+                <xor condition="|rejection|no customer response|" description="" type="event based">
+                    <seq>
+                        <task lane="Commercial Lender" pool="BGM">rejection letter received</task>
+                    </seq>
+                    <seq>
+                        <task lane="Commercial Lender" pool="BGM">1 month after customer information</task>
+                    </seq>
+                </xor>
+                <task lane="Commercial Lender" pool="BGM">loan application rejected</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

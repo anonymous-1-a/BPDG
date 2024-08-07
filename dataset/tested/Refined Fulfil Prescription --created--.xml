@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Technician" pool="Pharmacy">Prescription received</task>
+        <task lane="Technician" pool="Pharmacy">Enter prescription details</task>
+        <task lane="DUR System" pool="Pharmacy">Perform DUR Check</task>
+        <rigid>
+            <vertices>
+                <task id="69" lane="DUR System" pool="Pharmacy">Perform Insurance check</task>
+                <gateway description="Doctor review required?" id="37" type="XOR"/>
+                <gateway description="" id="67" type="XOR"/>
+                <task id="35" lane="Pharmacist" pool="Pharmacy">Evaluate drug replacement</task>
+                <task id="33" lane="Pharmacist" pool="Pharmacy">Determine any replacement drug available</task>
+                <gateway description="DUR alarm raised?" id="64" type="XOR"/>
+                <task id="31" lane="Pharmacist" pool="Pharmacy">Determine patient cost</task>
+                <event id="30" lane="Pharmacist" pool="Pharmacy">Prescription unfilled</event>
+                <event id="60" lane="Pharmacist" pool="Pharmacy">Prescription filled</event>
+                <task id="49" lane="Pharmacist" pool="Pharmacy">Perform quality check for correct prescription</task>
+                <gateway description="" id="47" type="XOR"/>
+                <task id="45" lane="Pharmacist" pool="Pharmacy">Recalculate replacement drug cost</task>
+                <event id="76" lane="Pharmacist" pool="Pharmacy"/>
+                <task id="13" lane="Technician" pool="Pharmacy">Pick replacement prescription from shelves</task>
+                <task id="74" lane="DUR System" pool="Pharmacy">Report % of prescription paid</task>
+                <gateway description="Drug replacement approved?" id="42" type="XOR"/>
+                <task id="11" lane="Technician" pool="Pharmacy">Pick original prescription from shelves</task>
+                <task id="40" lane="Pharmacist" pool="Pharmacy">Request doctor approval</task>
+                <gateway description="Full cost covered?" id="71" type="XOR"/>
+                <gateway description="" id="9" type="XOR"/>
+                <gateway description="Accepted replacement?" id="6" type="XOR"/>
+                <task id="58" lane="Pharmacist" pool="Pharmacy">Seal bag and store prescription in pickup area</task>
+                <gateway description="Confirmed by doctor?" id="27" type="XOR"/>
+                <task id="4" lane="Technician" pool="Pharmacy">Offer customer option to replace</task>
+                <gateway description="" id="56" type="XOR"/>
+                <task id="25" lane="Pharmacist" pool="Pharmacy">Confirm prescription with doctor</task>
+                <gateway description="" id="2" type="XOR"/>
+                <task id="54" lane="Pharmacist" pool="Pharmacy">Correct prescription</task>
+                <gateway description="Call doctor required?" id="22" type="XOR"/>
+                <gateway description="Prescription correction required?" id="51" type="XOR"/>
+                <task id="20" lane="Pharmacist" pool="Pharmacy">Perform further DUR review</task>
+            </vertices>
+            <edges>
+                <edge source_id="51" target_id="54">Yes</edge>
+                <edge source_id="56" target_id="58"/>
+                <edge source_id="22" target_id="25">Yes</edge>
+                <edge source_id="37" target_id="2">No</edge>
+                <edge source_id="42" target_id="9">No</edge>
+                <edge source_id="51" target_id="56">No</edge>
+                <edge source_id="31" target_id="33"/>
+                <edge source_id="60" target_id="76"/>
+                <edge source_id="49" target_id="51"/>
+                <edge source_id="64" target_id="67">No</edge>
+                <edge source_id="6" target_id="9">No</edge>
+                <edge source_id="45" target_id="47"/>
+                <edge source_id="25" target_id="27"/>
+                <edge source_id="40" target_id="42"/>
+                <edge source_id="47" target_id="49"/>
+                <edge source_id="33" target_id="35"/>
+                <edge source_id="71" target_id="9">Yes</edge>
+                <edge source_id="13" target_id="45"/>
+                <edge source_id="30" target_id="76"/>
+                <edge source_id="42" target_id="2">Yes</edge>
+                <edge source_id="22" target_id="67">No</edge>
+                <edge source_id="20" target_id="22"/>
+                <edge source_id="9" target_id="11"/>
+                <edge source_id="54" target_id="56"/>
+                <edge source_id="11" target_id="47"/>
+                <edge source_id="74" target_id="31"/>
+                <edge source_id="6" target_id="13">Yes</edge>
+                <edge source_id="67" target_id="69"/>
+                <edge source_id="71" target_id="74">No</edge>
+                <edge source_id="69" target_id="71"/>
+                <edge source_id="4" target_id="6"/>
+                <edge source_id="64" target_id="20">Yes</edge>
+                <edge source_id="27" target_id="67">Yes</edge>
+                <edge source_id="27" target_id="30">No</edge>
+                <edge source_id="37" target_id="40">Yes</edge>
+                <edge source_id="35" target_id="37"/>
+                <edge source_id="58" target_id="60"/>
+                <edge source_id="2" target_id="4"/>
+            </edges>
+        </rigid>
+    </seq>
+</rpst>

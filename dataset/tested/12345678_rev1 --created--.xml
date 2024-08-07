@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Requestor"
+              pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">submit a NE Project Request for B2B U-Turn implementation
+        </task>
+        <task lane="3rd Party Access Solutions Workgroup (3PASWG)"
+              pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">receives product order requests, analyzes requirements
+        </task>
+        <task lane="3rd Party Access Solutions Workgroup (3PASWG)"
+              pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">assigns a network engineer
+        </task>
+        <and>
+            <seq>
+                <task lane="3rd Party Access Solutions Workgroup (3PASWG)"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">
+                    notifies the requestor of B2B U-Turn implementation requirements and the CCR approval process
+                </task>
+                <task lane="Requestor"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">obtained business justification, a BISO statement of compliance, and a signed B2B U-Turn notification letter
+                </task>
+            </seq>
+            <seq>
+                <task lane="3rd Party Access Solutions Workgroup (3PASWG)"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">
+                    creates a high-level B2B U-Turn diagram for providing it to the requestor
+                </task>
+            </seq>
+        </and>
+        <task lane="Requestor"
+              pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">submit B2B U-Turn approval requests in CCR
+        </task>
+        <task lane="3rd Party Access Solutions Workgroup (3PASWG)"
+              pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">reviews the request
+        </task>
+        <task lane="3rd Party Access Solutions Workgroup (3PASWG)"
+              pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">refers the request to the ISTG
+        </task>
+        <task lane="Information Security Technology Group (ISTG)"
+              pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">reviews the request
+        </task>
+        <xor condition="|||" description="" type="">
+            <seq>
+                <task lane="Information Security Technology Group (ISTG)"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">
+                    notify requestor of approval
+                </task>
+                <task lane="Requestor"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">
+                    receives an approval notification and notifies NE
+                </task>
+                <task lane="3rd Party Access Solutions Workgroup (3PASWG)"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">
+                    proceeds with the design and implementation of the B2B U-Turn
+                </task>
+                <task lane="3rd Party Access Solutions Workgroup (3PASWG)"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">
+                    advises the requester to register the U-Turn in the CCR
+                </task>
+                <task lane="Requestor"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">
+                    registers a B2B U-Turn in CCR
+                </task>
+            </seq>
+            <seq>
+                <task lane="Information Security Technology Group (ISTG)"
+                      pool="Citigroup Inter-Corporation Business-to-Business (B2B) Network U-Turn Request Workflow">
+                    notify requestor of rejection
+                </task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

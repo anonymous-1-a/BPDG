@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Customer contact" pool="Process Request">Request Received</task>
+        <and>
+            <seq>
+                <loop condition="No" description="Annexes OK?" exit="Yes" type="dowhile">
+                    <seq>
+                        <task lane="Secretary" pool="Process Request">Enter Annexes</task>
+                        <task lane="Customer contact" pool="Process Request">Check Annexes</task>
+                    </seq>
+                </loop>
+            </seq>
+            <seq>
+                <loop condition="No" description="Terms OK?" exit="Yes" type="dowhile">
+                    <seq>
+                        <task lane="Customer contact" pool="Process Request">Enter Terms in System</task>
+                        <task lane="Branch Manager" pool="Process Request">Check Terms</task>
+                    </seq>
+                </loop>
+            </seq>
+        </and>
+        <task lane="Branch Manager" pool="Process Request">Validate Request</task>
+        <xor condition="|No|Yes|" description="Valid?" type="">
+            <seq>
+                <task lane="Branch Manager" pool="Process Request">Send Rejection Letter</task>
+                <task lane="Branch Manager" pool="Process Request">Request Rejected</task>
+            </seq>
+            <seq>
+                <task lane="Customer contact" pool="Process Request">Calculate Price</task>
+                <task lane="Secretary" pool="Process Request">Generate Invoice</task>
+                <task lane="Secretary" pool="Process Request">Send Invoice</task>
+                <task lane="Secretary" pool="Process Request">Request Accepted</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

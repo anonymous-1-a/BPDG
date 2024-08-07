@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Management" pool="Single DB creation (ADI-18114)">Activity start</task>
+        <and>
+            <seq>
+                <task lane="Management" pool="Single DB creation (ADI-18114)">Define process on data maintenance (ADI-18137)
+                </task>
+                <task lane="Management" pool="Single DB creation (ADI-18114)">Implement data maintenance process (ADI-18137)
+                </task>
+            </seq>
+            <seq>
+                <and>
+                    <seq>
+                        <task lane="Development teams" pool="Single DB creation (ADI-18114)">Analyze data to be added (e.g. ADI-18314)
+                        </task>
+                    </seq>
+                    <seq>
+                        <and>
+                            <seq>
+                                <task lane="Operations team" pool="Single DB creation (ADI-18114)">Clean data from CI databases (ADI-17160)
+                                </task>
+                            </seq>
+                            <seq>
+                                <task lane="QA team" pool="Single DB creation (ADI-18114)">Prepare environments and their deployment (ADI-17922)
+                                </task>
+                            </seq>
+                        </and>
+                        <task lane="QA team" pool="Single DB creation (ADI-18114)">Deploy environment with clean CI databases
+                        </task>
+                    </seq>
+                </and>
+                <task lane="Development teams" pool="Single DB creation (ADI-18114)">Insert data into DB using Client (ADI-18114)
+                </task>
+                <task lane="QA team" pool="Single DB creation (ADI-18114)">Backup DBs with new data</task>
+                <task lane="Operations team" pool="Single DB creation (ADI-18114)">Update environments to use new DBs
+                </task>
+            </seq>
+        </and>
+    </seq>
+</rpst>

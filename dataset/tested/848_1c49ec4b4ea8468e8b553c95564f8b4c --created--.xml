@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Pharmacist" pool="Dispensing process">Customer come</task>
+        <task lane="Pharmacist" pool="Dispensing process">Determine medicine type</task>
+        <rigid>
+            <vertices>
+                <task id="50" lane="Doctor" pool="Dispensing process">Prove the prescription</task>
+                <event id="39" lane="Pharmacist" pool="Dispensing process">Customer leave</event>
+                <task id="37" lane="Pharmacist" pool="Dispensing process">Give medicine and perform counselling</task>
+                <task id="35" lane="Pharmacist" pool="Dispensing process">Stick labels and re-check</task>
+                <task id="33" lane="Pharmacist" pool="Dispensing process">Print instructions and lables</task>
+                <event id="32" lane="Pharmacist" pool="Dispensing process">Customer leave</event>
+                <event id="63" lane="Pharmacist" pool="Dispensing process"/>
+                <task id="61" lane="IT system" pool="Dispensing process">Collect and retrieve information</task>
+                <task id="30" lane="Pharmacist" pool="Dispensing process">Ask for medicare information</task>
+                <gateway description="S8 medicine?" id="18" type="XOR"/>
+                <task id="16" lane="Pharmacist" pool="Dispensing process">Check medicine type</task>
+                <gateway description="" id="47" type="XOR"/>
+                <gateway description="" id="45" type="XOR"/>
+                <gateway description="Collect for others?" id="13" type="XOR"/>
+                <event id="44" lane="Pharmacist" pool="Dispensing process">Customer leave</event>
+                <task id="11" lane="Pharmacist" pool="Dispensing process">Determine whether medicine is collected for others
+                </task>
+                <task id="42" lane="Pharmacist" pool="Dispensing process">Reject the collecting</task>
+                <gateway description="" id="40" type="XOR"/>
+                <task id="9" lane="Pharmacist" pool="Dispensing process">Check prescription</task>
+                <task id="28" lane="Pharmacist" pool="Dispensing process">Reject the collecting</task>
+                <gateway description="OTC?" id="6" type="XOR"/>
+                <task id="26" lane="Pharmacist" pool="Dispensing process">Contact doctor</task>
+                <gateway description="Verified?" id="57" type="XOR"/>
+                <task id="55" lane="Doctor" pool="Dispensing process">Verify the patient and people who collect medicine
+                </task>
+                <gateway description="Legal?" id="23" type="XOR"/>
+                <gateway description="" id="21" type="XOR"/>
+                <gateway description="Proved?" id="52" type="XOR"/>
+            </vertices>
+            <edges>
+                <edge source_id="33" target_id="35"/>
+                <edge source_id="28" target_id="32"/>
+                <edge source_id="13" target_id="45">No</edge>
+                <edge source_id="6" target_id="9">No</edge>
+                <edge source_id="57" target_id="21">Yes</edge>
+                <edge source_id="11" target_id="13"/>
+                <edge source_id="21" target_id="45"/>
+                <edge source_id="13" target_id="16">Yes</edge>
+                <edge source_id="32" target_id="63"/>
+                <edge source_id="18" target_id="55">Yes</edge>
+                <edge source_id="9" target_id="23"/>
+                <edge source_id="57" target_id="42">No</edge>
+                <edge source_id="26" target_id="50"/>
+                <edge source_id="52" target_id="28">No</edge>
+                <edge source_id="47" target_id="11"/>
+                <edge source_id="39" target_id="63"/>
+                <edge source_id="45" target_id="30"/>
+                <edge source_id="42" target_id="44"/>
+                <edge source_id="16" target_id="18"/>
+                <edge source_id="37" target_id="39"/>
+                <edge source_id="23" target_id="26">No</edge>
+                <edge source_id="6" target_id="40">Yes</edge>
+                <edge source_id="50" target_id="52"/>
+                <edge source_id="30" target_id="61"/>
+                <edge source_id="61" target_id="33"/>
+                <edge source_id="35" target_id="40"/>
+                <edge source_id="40" target_id="37"/>
+                <edge source_id="52" target_id="47">Yes</edge>
+                <edge source_id="23" target_id="47">Yes</edge>
+                <edge source_id="18" target_id="21">No</edge>
+                <edge source_id="44" target_id="63"/>
+                <edge source_id="55" target_id="57"/>
+            </edges>
+        </rigid>
+    </seq>
+</rpst>

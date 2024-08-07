@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Party" pool="Real Estate Mediation Registration Process">Submit mediation request form</task>
+        <task lane="CMS Portal" pool="Real Estate Mediation Registration Process">Create a mediation request case</task>
+        <task lane="CMS Portal" pool="Real Estate Mediation Registration Process">Request the estate agent details
+        </task>
+        <task lane="CEA System" pool="Real Estate Mediation Registration Process">Send the estate agent details</task>
+        <task lane="CMS Officer" pool="Real Estate Mediation Registration Process">Validate the information</task>
+        <xor condition="|Yes-85%|No- 15%|" description="Is Valid?" type="">
+            <seq>
+                <task lane="CMS Officer" pool="Real Estate Mediation Registration Process">Prepare the case document
+                </task>
+                <task lane="CMS Portal" pool="Real Estate Mediation Registration Process">Request the HC appointed mediators
+                </task>
+                <task lane="MMS" pool="Real Estate Mediation Registration Process">Send the list of mediators and details to CMS Portal
+                </task>
+                <task lane="CMS Portal" pool="Real Estate Mediation Registration Process">Update the list and notify the parties
+                </task>
+                <task lane="Party" pool="Real Estate Mediation Registration Process">Select and confirm the mediator
+                </task>
+                <task lane="CMS Portal" pool="Real Estate Mediation Registration Process">Send reserved mediator info
+                </task>
+                <task lane="MMS" pool="Real Estate Mediation Registration Process">Reserve and send the mediation process details to CMS Portal
+                </task>
+                <task lane="CMS Portal" pool="Real Estate Mediation Registration Process">Send payment details and mediation process to parties
+                </task>
+            </seq>
+            <seq>
+                <task lane="CMS Officer" pool="Real Estate Mediation Registration Process">Reject the case</task>
+                <task lane="CMS Portal" pool="Real Estate Mediation Registration Process">Email the parties on rejection reason
+                </task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

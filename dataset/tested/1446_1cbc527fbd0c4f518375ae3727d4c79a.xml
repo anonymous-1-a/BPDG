@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="UniPartners">Data required</task>
+        <task lane="" pool="UniPartners">Assess project specifications</task>
+        <task lane="" pool="UniPartners">Determine collection methods</task>
+        <or condition="|Interview required|client database required|Questionnaire required|">
+            <seq>
+                <loop condition="Invite rejected" description="" exit="Invite accepted" type="dowhile">
+                    <seq>
+                        <task lane="" pool="UniPartners">Determine interviewees</task>
+                        <task lane="" pool="UniPartners">Contact interviewees</task>
+                    </seq>
+                </loop>
+                <task lane="" pool="UniPartners">Interviewee agreement received</task>
+                <task lane="" pool="UniPartners">Develop interview structure</task>
+                <task lane="" pool="UniPartners">Conduct interview</task>
+            </seq>
+            <seq>
+                <task lane="" pool="UniPartners">Request access to database</task>
+                <task lane="" pool="UniPartners">Database access granted</task>
+                <task lane="" pool="UniPartners">Assess client database</task>
+                <task lane="" pool="UniPartners">Retrieve relevant data</task>
+            </seq>
+            <seq>
+                <task lane="" pool="UniPartners">Develop questionnaire</task>
+                <task lane="" pool="UniPartners">Assess questionnaire</task>
+                <task lane="" pool="UniPartners">Determine target group</task>
+                <task lane="" pool="UniPartners">Distribute questionnaire</task>
+                <task lane="" pool="UniPartners">Obtain questionnaire from respondents</task>
+            </seq>
+        </or>
+        <task lane="" pool="UniPartners">Compile collected data</task>
+    </seq>
+</rpst>

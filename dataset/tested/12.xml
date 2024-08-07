@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">wants to create a PayPal account</task>
+        <task lane="" pool="">client determine desired account type</task>
+        <xor condition="|||" description="" type="">
+            <seq>
+                <task lane="" pool="">select a personal account</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">select a premium account</task>
+            </seq>
+        </xor>
+        <task lane="" pool="">client enter login details</task>
+        <task lane="" pool="">client declare if affiliated with any politically exposed person</task>
+        <task lane="" pool="">client clicks the create account button</task>
+        <task lane="" pool="">details will be sent to the PayPal system</task>
+        <task lane="" pool="">system validate the input</task>
+        <xor condition="|any invalid fields|all ok|" description="" type="">
+            <seq>
+                <task lane="" pool="">system notified needs to correct invalid fields</task>
+            </seq>
+            <seq>
+                <task lane="" pool="">send welcome email</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">customer order is received</task>
+        <task lane="" pool="">order sent to the warehouse</task>
+        <task lane="" pool="">warehouse employees determine the parts required to produce the requested items</task>
+        <xor condition="|all necessary parts are available|any parts not available|" description="" type="skip">
+            <seq>
+                <task lane="" pool="">order needed parts</task>
+            </seq>
+        </xor>
+        <task lane="" pool="">production start</task>
+        <task lane="" pool="">quality checks</task>
+        <task lane="" pool="">packag and label product</task>
+        <task lane="" pool="">return product to the warehouse</task>
+        <task lane="" pool="">inform sales completed production</task>
+    </seq>
+</rpst>

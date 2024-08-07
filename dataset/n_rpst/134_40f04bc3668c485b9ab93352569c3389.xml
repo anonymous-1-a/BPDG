@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="A visit to the doctor">Requesting a doctor</task>
+        <xor condition="||||" description="Type of the insurance" type="">
+            <seq>
+                <task lane="" pool="A visit to the doctor">privat</task>
+            </seq>
+            <seq>
+                <task lane="" pool="A visit to the doctor">state</task>
+            </seq>
+            <seq>
+                <task lane="" pool="A visit to the doctor">no</task>
+            </seq>
+        </xor>
+        <task lane="" pool="A visit to the doctor">going to the doctor</task>
+        <task lane="" pool="A visit to the doctor">Check your record files</task>
+        <xor condition="|no|yes|" description="Is it your first visit?" type="skip">
+            <seq>
+                <task lane="" pool="A visit to the doctor">complete the documents</task>
+            </seq>
+        </xor>
+        <task lane="" pool="A visit to the doctor">waiting Room</task>
+        <task lane="" pool="A visit to the doctor">Getting Called by doctor</task>
+        <task lane="" pool="A visit to the doctor">Getting checked by doctor</task>
+        <xor condition="|No|Yes|" description="Disease within the scope of doctor?" type="">
+            <seq>
+                <task lane="" pool="A visit to the doctor">Getting referred to appropriate specialist</task>
+            </seq>
+            <seq>
+                <task lane="" pool="A visit to the doctor">Doctor gives the prescription and sick leave document (if needed)
+                </task>
+                <xor condition="|No|Yes|" description="Medicine required?" type="skip">
+                    <seq>
+                        <task lane="" pool="A visit to the doctor">Giving Prescription to pharmacist</task>
+                        <xor condition="|Yes|No|" description="Medicine available?" type="">
+                            <seq>
+                                <task lane="" pool="A visit to the doctor">taking medicine</task>
+                                <task lane="" pool="A visit to the doctor">Giving money</task>
+                            </seq>
+                            <seq>
+                                <task lane="" pool="A visit to the doctor">Choosing between pick up or delivery</task>
+                                <task lane="" pool="A visit to the doctor">Getting info about the pickup or delivery date
+                                </task>
+                                <xor condition="|No|Yes|" description="Agree with the date?" type="">
+                                    <seq>
+                                        <task lane="" pool="A visit to the doctor">Cancelling order</task>
+                                    </seq>
+                                    <seq>
+                                        <task lane="" pool="A visit to the doctor">Payment</task>
+                                    </seq>
+                                </xor>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Intern" pool="Grooming Process">Grooming Request Recieved</task>
+        <loop condition="No" description="Clean Enough?" exit="Yes" type="dowhile">
+            <seq>
+                <task lane="Intern" pool="Grooming Process">Perform Quick Shampoo</task>
+            </seq>
+        </loop>
+        <task lane="Master Groomer" pool="Grooming Process">Evaluates Dog Condition</task>
+        <xor condition="|Calm|Agitated|" description="" type="skip">
+            <seq>
+                <task lane="Vet" pool="Grooming Process">Sedate Dog</task>
+            </seq>
+        </xor>
+        <task lane="Master Groomer" pool="Grooming Process">Cut Hair</task>
+        <and>
+            <seq>
+                <task lane="Intern" pool="Grooming Process">Trim Dog's Nails</task>
+            </seq>
+            <seq>
+                <task lane="Master Groomer" pool="Grooming Process">Clean Dog's Ears</task>
+            </seq>
+        </and>
+        <task lane="Master Groomer" pool="Grooming Process">Perform Dental Care</task>
+    </seq>
+</rpst>

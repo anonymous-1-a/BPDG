@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="Landing Department">Check Financial Coverage</task>
+        <xor condition="|||" description="" type="">
+            <seq>
+                <task lane="" pool="Landing Department">Reject Mortgage application due to financial problem</task>
+            </seq>
+            <seq>
+                <task lane="" pool="Landing Department">Check Property</task>
+                <xor condition="|||" description="" type="">
+                    <seq>
+                        <task lane="" pool="Landing Department">Reject mortgage application due to property probelm
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="Landing Department">Accept mortgage application</task>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

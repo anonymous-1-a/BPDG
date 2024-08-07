@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Inquiry Officer" pool="Police Station">Start</task>
+        <task lane="Inquiry Officer" pool="Police Station">Receive an incident case</task>
+        <rigid>
+            <vertices>
+                <task id="30" lane="Deputy Superintendent" pool="Police Station">Check the incident report #1</task>
+                <gateway description="" id="27" type="XOR"/>
+                <gateway description="" id="25" type="XOR"/>
+                <gateway description="" id="9" type="XOR"/>
+                <gateway description="" id="20" type="XOR"/>
+                <task id="17" lane="Inquiry Officer" pool="Police Station">Summarize and finalize the incident report
+                </task>
+                <gateway description="" id="14" type="XOR"/>
+                <gateway description="" id="39" type="XOR"/>
+                <task id="2" lane="Investigation Officer" pool="Police Station">Investigate the incident</task>
+                <task id="11" lane="Inquiry Officer" pool="Police Station">Gather information from the citizens</task>
+                <task id="36" lane="Superintendent" pool="Police Station">Check the incident report #2</task>
+            </vertices>
+            <edges>
+                <edge source_id="25" target_id="30"/>
+                <edge source_id="9" target_id="17"/>
+                <edge source_id="27" target_id="36">Enough information</edge>
+                <edge source_id="2" target_id="9"/>
+                <edge source_id="14" target_id="9">There is no suspect</edge>
+                <edge source_id="14" target_id="2">There is a suspect related to the incident.</edge>
+                <edge source_id="39" target_id="25">Not enough info</edge>
+                <edge source_id="20" target_id="11"/>
+                <edge source_id="30" target_id="27"/>
+                <edge source_id="27" target_id="20">Not enough information</edge>
+                <edge source_id="36" target_id="39"/>
+                <edge source_id="17" target_id="25"/>
+                <edge source_id="11" target_id="14"/>
+            </edges>
+        </rigid>
+        <xor condition="|No further investigation is needed.|Further investigation|" description="" type="skip">
+            <seq>
+                <task lane="Superintendent" pool="Police Station">Litigate a dispute to the court</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

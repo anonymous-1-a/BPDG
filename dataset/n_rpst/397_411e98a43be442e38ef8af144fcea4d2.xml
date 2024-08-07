@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">Timeframe for conditions has ended</task>
+        <and>
+            <seq>
+                <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">Provide contact-person</task>
+                <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">provide negotiation-relevant data</task>
+            </seq>
+            <seq>
+                <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">Notify to renew conditions</task>
+            </seq>
+        </and>
+        <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">contact supplier</task>
+        <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">contact started</task>
+        <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">negotiated conditions</task>
+        <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">recieved new conditions</task>
+        <task lane="" pool="Felix Martin Hi-Fi &amp; Movie Studio">enter new conditions</task>
+    </seq>
+</rpst>

@@ -1,9 +1,9 @@
 # Demonstration
 structured text:
-"""Lender of Bank Of Golden Merchants (BGM) Value Loan Application""" next """Risk Assesment Staff of Bank Of Golden Merchants (BGM) Check Complete Submission"""
+"""Credit Assessor of Bank Of Golden Merchants (BGM) Value Loan Application""" next """Risk Assesment Staff of Bank Of Golden Merchants (BGM) Check Complete Submission"""
 process text:
-The lender of the Bank of Golden Merchants (BGM) assesses the value of the loan. Then, the risk assessment staff of the Bank of Golden Merchants (BGM) checks that the loan submission is complete.
+The credit assessor at Bank of Golden Merchants (BGM) values the loan application. Then, the risk assessment staff of the BGM checks that the loan submission is complete.
 structured text:
-"""System Enter Order Requirements""" next """Support Service Inventory and Food Required""" next """System Inventory Confirmed"""
+"""Clerk of Hardware Retailer Goods to ship""" next """Warehouse Worker of Hardware Retailer package goods""" next """Clerk of Hardware Retailer Decide if normal post or special shipment"""
 process text:
-The system receives the order requirements. Next, the support service reviews the inventory and necessary food items. Finally, the system confirms the available inventory.
+The clerk of the hardware retailer has goods to be shipped, and then the warehouse worker will package the goods. After that, the clerk decides if it is a normal post or a special shipment.

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Clerk" pool="Hardware Retailer">Goods to ship</task>
+        <and>
+            <seq>
+                <task lane="Warehouse Worker" pool="Hardware Retailer">Package goods</task>
+            </seq>
+            <seq>
+                <task lane="Clerk" pool="Hardware Retailer">Decide if normal post or special shipment</task>
+                <xor condition="|Special Carrier|normal carrier|" description="Mode of delivery" type="">
+                    <seq>
+                        <task lane="Clerk" pool="Hardware Retailer">Request quotes from carriers</task>
+                        <task lane="Clerk" pool="Hardware Retailer">Assign a carrier &amp; prepare paperwork</task>
+                    </seq>
+                    <seq>
+                        <task lane="Clerk" pool="Hardware Retailer">Check if extra insurance is necessary</task>
+                        <or condition="|Always|extra insurance required|">
+                            <seq>
+                                <task lane="Clerk" pool="Hardware Retailer">Fill in a Post Label</task>
+                            </seq>
+                            <seq>
+                                <task lane="Logistics Manager" pool="Hardware Retailer">Take out extra insurance</task>
+                            </seq>
+                        </or>
+                    </seq>
+                </xor>
+            </seq>
+        </and>
+        <task lane="Warehouse Worker" pool="Hardware Retailer">add paperwork and move package to pick area</task>
+    </seq>
+</rpst>

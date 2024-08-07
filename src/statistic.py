@@ -395,5 +395,5 @@ if __name__ == '__main__':
     # field_path = 'result/fields.txt'
     gc_read_p = 'result/HCT_gc_read.txt'
     field_count_path = 'result/fields_96.txt'
-    fd = 'result/HCT'
+    fd = 'result/HCT_'
     sort_by_field_read(field_count_path, gc_read_p)

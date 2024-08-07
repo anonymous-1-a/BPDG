@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="Technician">Customer arrives</task>
+        <task lane="" pool="Technician">Find completed script</task>
+        <task lane="" pool="Technician">Verify customer identity</task>
+        <xor condition="|Verified|Denied|" description="" type="">
+            <seq>
+                <task lane="" pool="Technician">Request payment</task>
+                <task lane="" pool="Technician">Process payment</task>
+                <task lane="" pool="Technician">Provide prescribed drug and receipt</task>
+            </seq>
+            <seq>
+                <task lane="" pool="Technician">Reject customer</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="MDM-Team" pool="Ammotec RUAG">Start directly after review</task>
+        <loop condition="yes" description="Occurring problems" exit="No" type="dowhile">
+            <seq>
+                <loop condition="Review bad" description="" exit="Review good" type="dowhile">
+                    <seq>
+                        <task lane="Subsidiary" pool="Ammotec RUAG">6. Do data cleansing and enrichment - check for duplicates and unused data
+                        </task>
+                        <task lane="Subsidiary" pool="Ammotec RUAG">7. Handover second extracts (after data cleansing) to MDM
+                        </task>
+                        <task lane="MDM-Team" pool="Ammotec RUAG">8. Check second extracts after data cleansing</task>
+                        <task lane="MDM &amp; Subsidiary" pool="Ammotec RUAG">9. Common review on second extracts</task>
+                    </seq>
+                    <seq>
+                        <task lane="MDM &amp; Subsidiary" pool="Ammotec RUAG">10. Common data mapping non SAP to SAP into To-Be template</task>
+                    </seq>
+                </loop>
+                <task lane="MDM &amp; Subsidiary" pool="Ammotec RUAG">10. Common data mapping non SAP to SAP into To-Be template
+                </task>
+            </seq>
+        </loop>
+        <task lane="MDM-Team" pool="Ammotec RUAG">11. Check for duplicates for all plants and subsidiaries</task>
+    </seq>
+</rpst>

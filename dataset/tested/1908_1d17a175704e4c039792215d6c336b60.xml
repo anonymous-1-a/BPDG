@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Administration" pool="Kitchen department">Receive client</task>
+        <task lane="Designer" pool="Kitchen department">Discuss requirements</task>
+        <loop condition="receive declined offer" description="" exit="receive accepted offer" type="dowhile">
+            <seq>
+                <task lane="Designer" pool="Kitchen department">Make design</task>
+                <task lane="Administration" pool="Kitchen department">Send design</task>
+            </seq>
+        </loop>
+        <and>
+            <seq>
+                <task lane="Finance" pool="Kitchen department">Buy equipment</task>
+            </seq>
+            <seq>
+                <task lane="Builder" pool="Kitchen department">Check dimensions</task>
+            </seq>
+        </and>
+        <task lane="Administration" pool="Kitchen department">Plan date</task>
+        <and>
+            <seq>
+                <task lane="Builder" pool="Kitchen department">Remove old kitchen</task>
+            </seq>
+            <seq>
+                <task lane="Builder" pool="Kitchen department">Cut shelves</task>
+            </seq>
+        </and>
+        <task lane="Builder" pool="Kitchen department">Assemble kitchen</task>
+        <task lane="Finance" pool="Kitchen department">Send invoice</task>
+        <loop condition="after one hour 1" description="" exit="receive payment" type="dowhile">
+            <seq>
+                <task lane="Finance" pool="Kitchen department">Send reminder for invoice</task>
+            </seq>
+        </loop>
+    </seq>
+</rpst>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="customer service assistant" pool="Photo Studio">ready invoice</task>
+        <task lane="customer service assistant" pool="Photo Studio">choose the payment type</task>
+        <or condition="|by card|by cash|by bank transfer|">
+            <seq>
+                <task lane="customer service assistant" pool="Photo Studio">by card</task>
+                <loop condition="no" description="authorised payment?" exit="yes" type="dowhile">
+                    <seq>
+                        <task lane="customer service assistant" pool="Photo Studio">request payment to bank</task>
+                        <task lane="customer service assistant" pool="Photo Studio">confirm payment</task>
+                    </seq>
+                </loop>
+            </seq>
+            <seq>
+                <task lane="customer service assistant" pool="Photo Studio">pay cash</task>
+            </seq>
+            <seq>
+                <loop condition="no" description="receive payment?" exit="yes" type="dowhile">
+                    <seq>
+                        <task lane="customer service assistant" pool="Photo Studio">send studio account information
+                        </task>
+                        <task lane="customer service assistant" pool="Photo Studio">confirm payment</task>
+                    </seq>
+                </loop>
+            </seq>
+        </or>
+        <task lane="customer service assistant" pool="Photo Studio">update payment confirmation</task>
+    </seq>
+</rpst>

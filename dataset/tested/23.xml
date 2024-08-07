@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">demand identified within a department</task>
+        <xor condition="|enough goods|not enough goods|" description="" type="skip">
+            <seq>
+                <task lane="" pool="">define type of good needed</task>
+                <task lane="" pool="">define necessary amount</task>
+                <task lane="" pool="">create purchase requisition in EPR System</task>
+                <task lane="" pool="">Central procurement department check purchase requisition on the ERP system
+                </task>
+                <xor condition="|created or known supplier|new supplier|" description="" type="skip">
+                    <seq>
+                        <task lane="" pool="">create within the ERP system</task>
+                    </seq>
+                </xor>
+                <task lane="" pool="">create an order template in the ERP system</task>
+                <task lane="" pool="">approver approval order</task>
+            </seq>
+        </xor>
+    </seq>
+</rpst>

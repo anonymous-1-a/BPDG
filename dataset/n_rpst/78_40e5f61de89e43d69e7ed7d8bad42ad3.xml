@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Custodian" pool="Försäkringskassan">File selected child claim</task>
+        <loop condition="No" description="is claim valid" exit="Yes" type="dowhile">
+            <seq>
+                <task lane="Custodian" pool="Försäkringskassan">Fill in claim period dates</task>
+                <task lane="Parental Leave System" pool="Försäkringskassan">Check child relation to custodian</task>
+                <task lane="Parental Leave System" pool="Försäkringskassan">Determine claim validity</task>
+            </seq>
+        </loop>
+        <task lane="Custodian" pool="Försäkringskassan">Review and sign claim</task>
+        <task lane="Parental Leave System" pool="Försäkringskassan">Register Claim</task>
+    </seq>
+</rpst>

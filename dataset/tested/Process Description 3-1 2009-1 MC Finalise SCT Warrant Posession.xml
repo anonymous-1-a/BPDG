@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="Client Service Back Office" pool="Small Claims Registry Operations">receive the request</task>
+        <task lane="Client Service Back Office" pool="Small Claims Registry Operations">retrieve the SCT file</task>
+        <task lane="Client Service Back Office" pool="Small Claims Registry Operations">distribute SCT Warrant Possession
+        </task>
+        <task lane="Client Service Back Office" pool="Small Claims Registry Operations">store SCT physical file</task>
+        <task lane="Client Service Back Office" pool="Small Claims Registry Operations">retrieve SCT file</task>
+        <task lane="Client Service Back Office" pool="Small Claims Registry Operations">attach the new SCT document
+        </task>
+        <task lane="Client Service Back Office" pool="Small Claims Registry Operations">store the expanded SCT physical file
+        </task>
+    </seq>
+</rpst>

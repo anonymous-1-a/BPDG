@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="IAAP">Create a resolution proposal draft</task>
+        <and>
+            <seq>
+                <task lane="" pool="IAAP">Request report to Legal Department</task>
+                <task lane="" pool="IAAP">Receive report from LD</task>
+            </seq>
+            <seq>
+                <task lane="" pool="IAAP">Request report to Consultative Board</task>
+                <task lane="" pool="IAAP">Receive report from CB</task>
+            </seq>
+        </and>
+        <task lane="" pool="IAAP">Analyse reports</task>
+        <xor condition="|Yes|No|" description="External resolution required?" type="">
+            <seq>
+                <task lane="" pool="IAAP">Request external resolution</task>
+                <task lane="" pool="IAAP">Receive external resolution</task>
+            </seq>
+            <seq>
+                <task lane="" pool="IAAP">Review resolution proposal</task>
+            </seq>
+        </xor>
+        <task lane="" pool="IAAP">Sign, store and notify resolution</task>
+    </seq>
+</rpst>

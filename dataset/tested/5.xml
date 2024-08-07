@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpst>
+    <seq>
+        <task lane="" pool="">a request for new hardware is received by the IT department</task>
+        <task lane="" pool="">The process of buying new hardware is started</task>
+        <task lane="" pool="">the IT department to analyse the request and either approve or deny it</task>
+        <xor condition="|no|yes|" description="Does the IT department decide whether to approve the request?" type="">
+            <seq>
+                <task lane="" pool="">the employee is informed via email about the denial and the process is ended
+                </task>
+            </seq>
+            <seq>
+                <task lane="" pool="">it is edited and completed</task>
+                <task lane="" pool="">an email is sent to the supplier asking about prices</task>
+                <task lane="" pool="">the supplier replies to the email by sending an offer for the requested items
+                </task>
+                <task lane="" pool="">a form is filled in and sent to the management</task>
+                <task lane="" pool="">The management then analyses the request and decides if it is approved or not
+                </task>
+                <xor condition="|yes|no|"
+                     description="Does the management department decide whether to approve the request?" type="">
+                    <seq>
+                        <task lane="" pool="">the offer is forwarded to the financial department and back to the IT department
+                        </task>
+                        <and>
+                            <seq>
+                                <task lane="" pool="">The financial department finds resources</task>
+                            </seq>
+                            <seq>
+                                <task lane="" pool="">the IT department prepares an order and sends this to the supplier
+                                </task>
+                            </seq>
+                        </and>
+                        <task lane="" pool="">the hardware is received by the IT department</task>
+                        <task lane="" pool="">the financial department will take care of the invoice and the processes is ended
+                        </task>
+                    </seq>
+                    <seq>
+                        <task lane="" pool="">it can send the request back to the IT department for rework</task>
+                        <xor condition="|yes|no|"
+                             description="Does the management department require the IT department to rework?" type="">
+                            <seq>
+                                <task lane="" pool="">the IT department has to go back to editing and completing a request
+                                </task>
+                            </seq>
+                            <seq>
+                                <task lane="" pool="">it can also decide to deny the request</task>
+                                <task lane="" pool="">the process is ended</task>
+                            </seq>
+                        </xor>
+                    </seq>
+                </xor>
+            </seq>
+        </xor>
+    </seq>
+</rpst>
