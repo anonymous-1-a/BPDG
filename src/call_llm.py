@@ -1,5 +1,5 @@
 from openai import OpenAI
-client = OpenAI(api_key="sk-None-vw3HAKjkkdhzRDVmGvjLT3BlbkFJ24r2TpffPRtSodFEWgtf")
+client = OpenAI(api_key="")
 
 # {'role': 'system', 'content': 'You are an assistant who follows instructions.'}
 def prompt_llm(model, pre, prompt, temperature):
